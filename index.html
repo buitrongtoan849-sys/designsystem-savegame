@@ -7,18 +7,29 @@
 
   <style>
     :root {
+      /* =========================
+         BRAND COLORS
+      ========================= */
       --brand-green: #22C55E;
       --brand-cyan: #06B6D4;
       --brand-gradient: linear-gradient(135deg, #22C55E, #06B6D4);
 
+      /* =========================
+         STATUS COLORS
+      ========================= */
       --success: #22C55E;
       --warning: #F59E0B;
       --danger: #EF4444;
       --info: #06B6D4;
 
-      --gray-950: #020B17;
-      --gray-900: #0F172A;
-      --gray-800: #1E293B;
+      /* =========================
+         NEUTRAL PALETTE
+      ========================= */
+      --gray-950: #010713;
+      --gray-925: #07111F;
+      --gray-900: #0B1626;
+      --gray-850: #122033;
+      --gray-800: #1E2D44;
       --gray-700: #334155;
       --gray-600: #475569;
       --gray-500: #64748B;
@@ -28,33 +39,53 @@
       --gray-100: #F1F5F9;
       --gray-50: #F8FAFC;
 
+      /* =========================
+         RADIUS
+      ========================= */
+      --radius-sm: 8px;
       --radius-md: 12px;
       --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      /* =========================
+         SPACING
+      ========================= */
+      --space-4: 4px;
+      --space-8: 8px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-48: 48px;
     }
 
-    body.dark {
-      --mode-name: "Dark Mode";
+    /* =========================
+       DARK MODE SEMANTIC TOKENS
+    ========================= */
 
-      --bg-primary: #020B17;
-      --bg-secondary: #0F172A;
-      --bg-card: #1E293B;
-      --bg-elevated: #334155;
+    body.dark {
+      --bg-primary: #010713;
+      --bg-secondary: #07111F;
+      --bg-card: #0B1626;
+      --bg-elevated: #122033;
 
       --text-primary: #FFFFFF;
       --text-secondary: #CBD5E1;
       --text-muted: #94A3B8;
       --text-disabled: #64748B;
-      --text-inverse: #020B17;
+      --text-inverse: #010713;
 
-      --border-default: #334155;
-      --border-hover: #475569;
+      --border-default: #1E2D44;
+      --border-hover: #334155;
       --border-focus: #06B6D4;
-      --border-disabled: #1E293B;
+      --border-disabled: #122033;
     }
 
-    body.light {
-      --mode-name: "Light Mode";
+    /* =========================
+       LIGHT MODE SEMANTIC TOKENS
+    ========================= */
 
+    body.light {
       --bg-primary: #F8FAFC;
       --bg-secondary: #FFFFFF;
       --bg-card: #FFFFFF;
@@ -82,8 +113,8 @@
       font-family: Arial, sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
-      padding: 32px;
-      transition: 0.25s;
+      padding: var(--space-32);
+      transition: 0.25s ease;
     }
 
     .container {
@@ -95,7 +126,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 32px;
+      margin-bottom: var(--space-32);
     }
 
     h1 {
@@ -110,7 +141,7 @@
 
     .subtitle {
       color: var(--text-muted);
-      margin-top: 8px;
+      margin-top: var(--space-8);
     }
 
     .theme-btn {
@@ -126,44 +157,44 @@
       background: var(--bg-card);
       border: 1px solid var(--border-default);
       border-radius: var(--radius-lg);
-      padding: 24px;
-      margin-bottom: 24px;
+      padding: var(--space-24);
+      margin-bottom: var(--space-24);
     }
 
     .section h2 {
-      margin-bottom: 8px;
+      margin-bottom: var(--space-8);
     }
 
     .desc {
       color: var(--text-muted);
-      margin-bottom: 24px;
+      margin-bottom: var(--space-24);
       line-height: 1.6;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      gap: var(--space-16);
     }
 
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: var(--space-16);
     }
 
     .token {
       background: var(--bg-secondary);
       border: 1px solid var(--border-default);
       border-radius: var(--radius-md);
-      padding: 16px;
+      padding: var(--space-16);
     }
 
     .swatch {
       height: 76px;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-default);
-      margin-bottom: 12px;
+      margin-bottom: var(--space-12);
     }
 
     .token-name {
@@ -177,13 +208,17 @@
       line-height: 1.5;
     }
 
+    /* Brand */
     .brand-green { background: #22C55E; }
     .brand-cyan { background: #06B6D4; }
     .brand-gradient { background: var(--brand-gradient); }
 
-    .gray-950 { background: #020B17; }
-    .gray-900 { background: #0F172A; }
-    .gray-800 { background: #1E293B; }
+    /* Neutral */
+    .gray-950 { background: #010713; }
+    .gray-925 { background: #07111F; }
+    .gray-900 { background: #0B1626; }
+    .gray-850 { background: #122033; }
+    .gray-800 { background: #1E2D44; }
     .gray-700 { background: #334155; }
     .gray-600 { background: #475569; }
     .gray-500 { background: #64748B; }
@@ -193,11 +228,13 @@
     .gray-100 { background: #F1F5F9; }
     .gray-50 { background: #F8FAFC; }
 
+    /* Status */
     .success-bg { background: #22C55E; }
     .warning-bg { background: #F59E0B; }
     .danger-bg { background: #EF4444; }
     .info-bg { background: #06B6D4; }
 
+    /* Semantic swatches */
     .bg-primary { background: var(--bg-primary); }
     .bg-secondary { background: var(--bg-secondary); }
     .bg-card { background: var(--bg-card); }
@@ -217,13 +254,13 @@
       background: var(--bg-secondary);
       border: 1px solid var(--border-default);
       border-radius: var(--radius-lg);
-      padding: 24px;
+      padding: var(--space-24);
     }
 
     .balance {
       font-size: 42px;
       font-weight: 800;
-      margin: 12px 0;
+      margin: var(--space-12) 0;
       background: var(--brand-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -233,8 +270,8 @@
     .badge-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 16px;
+      gap: var(--space-12);
+      margin-top: var(--space-16);
     }
 
     .btn {
@@ -259,6 +296,11 @@
       background: transparent;
       color: var(--brand-cyan);
       border: 1px solid var(--brand-cyan);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
     }
 
     .btn-disabled {
@@ -297,8 +339,8 @@
     input,
     select {
       width: 100%;
-      margin-top: 8px;
-      margin-bottom: 16px;
+      margin-top: var(--space-8);
+      margin-bottom: var(--space-16);
       padding: 13px 14px;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-default);
@@ -321,7 +363,7 @@
     .checkbox {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: var(--space-8);
       color: var(--text-secondary);
     }
 
@@ -357,7 +399,7 @@
       .header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 16px;
+        gap: var(--space-16);
       }
     }
   </style>
@@ -402,12 +444,14 @@
 
     <section class="section">
       <h2>02. Neutral Color Palette</h2>
-      <p class="desc">Kho màu xám dùng để tạo nền, card, text, border cho Dark / Light Mode.</p>
+      <p class="desc">Bộ Neutral đã được chỉnh tối hơn để hợp Dark UI của Save Game.</p>
 
       <div class="grid">
-        <div class="token"><div class="swatch gray-950"></div><div class="token-name">Gray 950</div><div class="token-value">#020B17</div></div>
-        <div class="token"><div class="swatch gray-900"></div><div class="token-name">Gray 900</div><div class="token-value">#0F172A</div></div>
-        <div class="token"><div class="swatch gray-800"></div><div class="token-name">Gray 800</div><div class="token-value">#1E293B</div></div>
+        <div class="token"><div class="swatch gray-950"></div><div class="token-name">Gray 950</div><div class="token-value">#010713</div></div>
+        <div class="token"><div class="swatch gray-925"></div><div class="token-name">Gray 925</div><div class="token-value">#07111F</div></div>
+        <div class="token"><div class="swatch gray-900"></div><div class="token-name">Gray 900</div><div class="token-value">#0B1626</div></div>
+        <div class="token"><div class="swatch gray-850"></div><div class="token-name">Gray 850</div><div class="token-value">#122033</div></div>
+        <div class="token"><div class="swatch gray-800"></div><div class="token-name">Gray 800</div><div class="token-value">#1E2D44</div></div>
         <div class="token"><div class="swatch gray-700"></div><div class="token-name">Gray 700</div><div class="token-value">#334155</div></div>
         <div class="token"><div class="swatch gray-600"></div><div class="token-name">Gray 600</div><div class="token-value">#475569</div></div>
         <div class="token"><div class="swatch gray-500"></div><div class="token-name">Gray 500</div><div class="token-value">#64748B</div></div>
@@ -433,7 +477,7 @@
 
     <section class="section">
       <h2>04. Semantic Token — Background</h2>
-      <p class="desc">Đây là token dùng thật trong UI. Mỗi token có mã màu riêng cho Dark và Light.</p>
+      <p class="desc">Đây là token dùng thật trong UI. Dark Mode đã tối hơn bản trước.</p>
 
       <div class="grid">
         <div class="token">
@@ -441,7 +485,7 @@
           <div class="token-name">bg-primary</div>
           <div class="token-value">
             Dùng: nền toàn app<br>
-            Dark: #020B17<br>
+            Dark: #010713<br>
             Light: #F8FAFC
           </div>
         </div>
@@ -451,7 +495,7 @@
           <div class="token-name">bg-secondary</div>
           <div class="token-value">
             Dùng: section phụ, list item<br>
-            Dark: #0F172A<br>
+            Dark: #07111F<br>
             Light: #FFFFFF
           </div>
         </div>
@@ -461,7 +505,7 @@
           <div class="token-name">bg-card</div>
           <div class="token-value">
             Dùng: card, form, block<br>
-            Dark: #1E293B<br>
+            Dark: #0B1626<br>
             Light: #FFFFFF
           </div>
         </div>
@@ -471,7 +515,7 @@
           <div class="token-name">bg-elevated</div>
           <div class="token-value">
             Dùng: popup, dropdown, disabled bg<br>
-            Dark: #334155<br>
+            Dark: #122033<br>
             Light: #F1F5F9
           </div>
         </div>
@@ -480,7 +524,7 @@
 
     <section class="section">
       <h2>05. Semantic Token — Text</h2>
-      <p class="desc">Text token giúp mày không phải chọn màu chữ thủ công từng màn hình.</p>
+      <p class="desc">Text token giúp không phải chọn màu chữ thủ công từng màn hình.</p>
 
       <div class="grid">
         <div class="token">
@@ -535,7 +579,7 @@
           <div class="token-name">border-default</div>
           <div class="token-value">
             Dùng: border mặc định<br>
-            Dark: #334155<br>
+            Dark: #1E2D44<br>
             Light: #E2E8F0
           </div>
         </div>
@@ -545,7 +589,7 @@
           <div class="token-name">border-hover</div>
           <div class="token-value">
             Dùng: hover border<br>
-            Dark: #475569<br>
+            Dark: #334155<br>
             Light: #CBD5E1
           </div>
         </div>
@@ -565,7 +609,7 @@
           <div class="token-name">border-disabled</div>
           <div class="token-value">
             Dùng: disabled border<br>
-            Dark: #1E293B<br>
+            Dark: #122033<br>
             Light: #E2E8F0
           </div>
         </div>
@@ -573,7 +617,46 @@
     </section>
 
     <section class="section">
-      <h2>07. Component Preview</h2>
+      <h2>07. Button Usage Rule</h2>
+      <p class="desc">Quy định để không bị loạn giữa nút Gradient và nút Primary Green.</p>
+
+      <div class="grid">
+        <div class="token">
+          <div class="token-name">Hero Button</div>
+          <div class="token-value">
+            Màu: Gradient<br>
+            Dùng: CTA quan trọng nhất, onboarding, setup tháng
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="token-name">Primary Button</div>
+          <div class="token-value">
+            Màu: #22C55E<br>
+            Dùng: lưu, thêm, xác nhận, cập nhật
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="token-name">Secondary Button</div>
+          <div class="token-value">
+            Màu: outline cyan<br>
+            Dùng: xem chi tiết, quay lại, hành động phụ
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="token-name">Danger Button</div>
+          <div class="token-value">
+            Màu: #EF4444<br>
+            Dùng: xóa, reset, hành động nguy hiểm
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>08. Component Preview</h2>
       <p class="desc">Demo dùng đúng token ở trên để tạo UI thật.</p>
 
       <div class="grid-2">
@@ -592,6 +675,7 @@
 
           <div class="btn-row">
             <button class="btn btn-gradient">Thiết lập tháng</button>
+            <button class="btn btn-primary">Lưu chi tiêu</button>
             <button class="btn btn-secondary">Xem lịch sử</button>
             <button class="btn btn-disabled">Disabled</button>
           </div>
@@ -619,16 +703,12 @@
             <input type="checkbox" checked />
             Tính vào chi tiêu hôm nay
           </label>
-
-          <div class="btn-row">
-            <button class="btn btn-primary">Lưu chi tiêu</button>
-          </div>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <h2>08. Cách dùng trong dự án thật</h2>
+      <h2>09. Cách dùng trong dự án thật</h2>
 
       <div class="usage">
         <p>Background app: <code>var(--bg-primary)</code></p>
@@ -640,7 +720,8 @@
         <p>Caption: <code>var(--text-muted)</code></p>
         <p>Border card/input: <code>var(--border-default)</code></p>
         <p>Focus input: <code>var(--border-focus)</code></p>
-        <p>Nút chính: <code>var(--brand-green)</code> hoặc <code>var(--brand-gradient)</code></p>
+        <p>Hero Button: <code>var(--brand-gradient)</code></p>
+        <p>Primary Button: <code>var(--brand-green)</code></p>
       </div>
     </section>
 
@@ -655,6 +736,7 @@
       body.classList.toggle("light");
 
       const isLight = body.classList.contains("light");
+
       themeBtn.textContent = isLight
         ? "Đổi sang Dark Mode"
         : "Đổi sang Light Mode";
