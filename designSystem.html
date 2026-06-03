@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Save Game Design System</title>
+
+  <style>
+    :root {
+      --brand-green: #22C55E;
+      --brand-cyan: #06B6D4;
+      --brand-gradient: linear-gradient(135deg, #22C55E, #06B6D4);
+
+      --success: #22C55E;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --info: #06B6D4;
+
+      --gray-950: #020B17;
+      --gray-900: #0F172A;
+      --gray-800: #1E293B;
+      --gray-700: #334155;
+      --gray-600: #475569;
+      --gray-500: #64748B;
+      --gray-400: #94A3B8;
+      --gray-300: #CBD5E1;
+      --gray-200: #E2E8F0;
+      --gray-100: #F1F5F9;
+      --gray-50: #F8FAFC;
+
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+
+    body.dark {
+      --mode-name: "Dark Mode";
+
+      --bg-primary: #020B17;
+      --bg-secondary: #0F172A;
+      --bg-card: #1E293B;
+      --bg-elevated: #334155;
+
+      --text-primary: #FFFFFF;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --text-disabled: #64748B;
+      --text-inverse: #020B17;
+
+      --border-default: #334155;
+      --border-hover: #475569;
+      --border-focus: #06B6D4;
+      --border-disabled: #1E293B;
+    }
+
+    body.light {
+      --mode-name: "Light Mode";
+
+      --bg-primary: #F8FAFC;
+      --bg-secondary: #FFFFFF;
+      --bg-card: #FFFFFF;
+      --bg-elevated: #F1F5F9;
+
+      --text-primary: #0F172A;
+      --text-secondary: #334155;
+      --text-muted: #64748B;
+      --text-disabled: #94A3B8;
+      --text-inverse: #FFFFFF;
+
+      --border-default: #E2E8F0;
+      --border-hover: #CBD5E1;
+      --border-focus: #06B6D4;
+      --border-disabled: #E2E8F0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      padding: 32px;
+      transition: 0.25s;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    h1 {
+      font-size: 36px;
+    }
+
+    h1 span {
+      background: var(--brand-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .theme-btn {
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-default);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    .section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section h2 {
+      margin-bottom: 8px;
+    }
+
+    .desc {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .token {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .swatch {
+      height: 76px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-default);
+      margin-bottom: 12px;
+    }
+
+    .token-name {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .token-value {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .brand-green { background: #22C55E; }
+    .brand-cyan { background: #06B6D4; }
+    .brand-gradient { background: var(--brand-gradient); }
+
+    .gray-950 { background: #020B17; }
+    .gray-900 { background: #0F172A; }
+    .gray-800 { background: #1E293B; }
+    .gray-700 { background: #334155; }
+    .gray-600 { background: #475569; }
+    .gray-500 { background: #64748B; }
+    .gray-400 { background: #94A3B8; }
+    .gray-300 { background: #CBD5E1; }
+    .gray-200 { background: #E2E8F0; }
+    .gray-100 { background: #F1F5F9; }
+    .gray-50 { background: #F8FAFC; }
+
+    .success-bg { background: #22C55E; }
+    .warning-bg { background: #F59E0B; }
+    .danger-bg { background: #EF4444; }
+    .info-bg { background: #06B6D4; }
+
+    .bg-primary { background: var(--bg-primary); }
+    .bg-secondary { background: var(--bg-secondary); }
+    .bg-card { background: var(--bg-card); }
+    .bg-elevated { background: var(--bg-elevated); }
+
+    .text-primary { background: var(--text-primary); }
+    .text-secondary { background: var(--text-secondary); }
+    .text-muted { background: var(--text-muted); }
+    .text-disabled { background: var(--text-disabled); }
+
+    .border-default { background: var(--border-default); }
+    .border-hover { background: var(--border-hover); }
+    .border-focus { background: var(--border-focus); }
+    .border-disabled { background: var(--border-disabled); }
+
+    .demo-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .balance {
+      font-size: 42px;
+      font-weight: 800;
+      margin: 12px 0;
+      background: var(--brand-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .btn-row,
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--brand-green);
+      color: var(--text-inverse);
+    }
+
+    .btn-gradient {
+      background: var(--brand-gradient);
+      color: #FFFFFF;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--brand-cyan);
+      border: 1px solid var(--brand-cyan);
+    }
+
+    .btn-disabled {
+      background: var(--bg-elevated);
+      color: var(--text-disabled);
+      cursor: not-allowed;
+    }
+
+    .badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge-success {
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--success);
+    }
+
+    .badge-warning {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--warning);
+    }
+
+    .badge-danger {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--danger);
+    }
+
+    .badge-info {
+      background: rgba(6, 182, 212, 0.15);
+      color: var(--info);
+    }
+
+    input,
+    select {
+      width: 100%;
+      margin-top: 8px;
+      margin-bottom: 16px;
+      padding: 13px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-default);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.15);
+    }
+
+    label {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+    }
+
+    .checkbox input {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      accent-color: var(--brand-green);
+    }
+
+    .usage {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+
+    code {
+      background: var(--bg-elevated);
+      color: var(--brand-cyan);
+      padding: 3px 6px;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 900px) {
+      .grid,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body class="dark">
+  <div class="container">
+
+    <header class="header">
+      <div>
+        <h1>SAVE <span>GAME</span></h1>
+        <p class="subtitle">Design System Foundation — Dark Mode & Light Mode</p>
+      </div>
+
+      <button class="theme-btn" id="themeBtn">Đổi sang Light Mode</button>
+    </header>
+
+    <section class="section">
+      <h2>01. Brand Colors</h2>
+      <p class="desc">Màu thương hiệu. Dùng cho CTA, icon chính, progress, link, focus, điểm nhấn.</p>
+
+      <div class="grid">
+        <div class="token">
+          <div class="swatch brand-green"></div>
+          <div class="token-name">Brand Green</div>
+          <div class="token-value">#22C55E</div>
+        </div>
+
+        <div class="token">
+          <div class="swatch brand-cyan"></div>
+          <div class="token-name">Brand Cyan</div>
+          <div class="token-value">#06B6D4</div>
+        </div>
+
+        <div class="token">
+          <div class="swatch brand-gradient"></div>
+          <div class="token-name">Brand Gradient</div>
+          <div class="token-value">#22C55E → #06B6D4</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>02. Neutral Color Palette</h2>
+      <p class="desc">Kho màu xám dùng để tạo nền, card, text, border cho Dark / Light Mode.</p>
+
+      <div class="grid">
+        <div class="token"><div class="swatch gray-950"></div><div class="token-name">Gray 950</div><div class="token-value">#020B17</div></div>
+        <div class="token"><div class="swatch gray-900"></div><div class="token-name">Gray 900</div><div class="token-value">#0F172A</div></div>
+        <div class="token"><div class="swatch gray-800"></div><div class="token-name">Gray 800</div><div class="token-value">#1E293B</div></div>
+        <div class="token"><div class="swatch gray-700"></div><div class="token-name">Gray 700</div><div class="token-value">#334155</div></div>
+        <div class="token"><div class="swatch gray-600"></div><div class="token-name">Gray 600</div><div class="token-value">#475569</div></div>
+        <div class="token"><div class="swatch gray-500"></div><div class="token-name">Gray 500</div><div class="token-value">#64748B</div></div>
+        <div class="token"><div class="swatch gray-400"></div><div class="token-name">Gray 400</div><div class="token-value">#94A3B8</div></div>
+        <div class="token"><div class="swatch gray-300"></div><div class="token-name">Gray 300</div><div class="token-value">#CBD5E1</div></div>
+        <div class="token"><div class="swatch gray-200"></div><div class="token-name">Gray 200</div><div class="token-value">#E2E8F0</div></div>
+        <div class="token"><div class="swatch gray-100"></div><div class="token-name">Gray 100</div><div class="token-value">#F1F5F9</div></div>
+        <div class="token"><div class="swatch gray-50"></div><div class="token-name">Gray 50</div><div class="token-value">#F8FAFC</div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>03. Status Colors</h2>
+      <p class="desc">Dùng cho trạng thái tài chính: an toàn, cảnh báo, nguy hiểm, thông tin.</p>
+
+      <div class="grid">
+        <div class="token"><div class="swatch success-bg"></div><div class="token-name">Success</div><div class="token-value">#22C55E</div></div>
+        <div class="token"><div class="swatch warning-bg"></div><div class="token-name">Warning</div><div class="token-value">#F59E0B</div></div>
+        <div class="token"><div class="swatch danger-bg"></div><div class="token-name">Danger</div><div class="token-value">#EF4444</div></div>
+        <div class="token"><div class="swatch info-bg"></div><div class="token-name">Info</div><div class="token-value">#06B6D4</div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>04. Semantic Token — Background</h2>
+      <p class="desc">Đây là token dùng thật trong UI. Mỗi token có mã màu riêng cho Dark và Light.</p>
+
+      <div class="grid">
+        <div class="token">
+          <div class="swatch bg-primary"></div>
+          <div class="token-name">bg-primary</div>
+          <div class="token-value">
+            Dùng: nền toàn app<br>
+            Dark: #020B17<br>
+            Light: #F8FAFC
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="swatch bg-secondary"></div>
+          <div class="token-name">bg-secondary</div>
+          <div class="token-value">
+            Dùng: section phụ, list item<br>
+            Dark: #0F172A<br>
+            Light: #FFFFFF
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="swatch bg-card"></div>
+          <div class="token-name">bg-card</div>
+          <div class="token-value">
+            Dùng: card, form, block<br>
+            Dark: #1E293B<br>
+            Light: #FFFFFF
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="swatch bg-elevated"></div>
+          <div class="token-name">bg-elevated</div>
+          <div class="token-value">
+            Dùng: popup, dropdown, disabled bg<br>
+            Dark: #334155<br>
+            Light: #F1F5F9
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>05. Semantic Token — Text</h2>
+      <p class="desc">Text token giúp mày không phải chọn màu chữ thủ công từng màn hình.</p>
+
+      <div class="grid">
+        <div class="token">
+          <div class="swatch text-primary"></div>
+          <div class="token-name">text-primary</div>
+          <div class="token-value">
+            Dùng: title, text chính<br>
+            Dark: #FFFFFF<br>
+            Light: #0F172A
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="swatch text-secondary"></div>
+          <div class="token-name">text-secondary</div>
+          <div class="token-value">
+            Dùng: mô tả, text phụ<br>
+            Dark: #CBD5E1<br>
+            Light: #334155
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="swatch text-muted"></div>
+          <div class="token-name">text-muted</div>
+          <div class="token-value">
+            Dùng: caption, metadata<br>
+            Dark: #94A3B8<br>
+            Light: #64748B
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="swatch text-disabled"></div>
+          <div class="token-name">text-disabled</div>
+          <div class="token-value">
+            Dùng: chữ disabled<br>
+            Dark: #64748B<br>
+            Light: #94A3B8
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>06. Semantic Token — Border</h2>
+      <p class="desc">Border token dùng cho card, input, dropdown, divider, focus state.</p>
+
+      <div class="grid">
+        <div class="token">
+          <div class="swatch border-default"></div>
+          <div class="token-name">border-default</div>
+          <div class="token-value">
+            Dùng: border mặc định<br>
+            Dark: #334155<br>
+            Light: #E2E8F0
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="swatch border-hover"></div>
+          <div class="token-name">border-hover</div>
+          <div class="token-value">
+            Dùng: hover border<br>
+            Dark: #475569<br>
+            Light: #CBD5E1
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="swatch border-focus"></div>
+          <div class="token-name">border-focus</div>
+          <div class="token-value">
+            Dùng: focus input/button<br>
+            Dark: #06B6D4<br>
+            Light: #06B6D4
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="swatch border-disabled"></div>
+          <div class="token-name">border-disabled</div>
+          <div class="token-value">
+            Dùng: disabled border<br>
+            Dark: #1E293B<br>
+            Light: #E2E8F0
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>07. Component Preview</h2>
+      <p class="desc">Demo dùng đúng token ở trên để tạo UI thật.</p>
+
+      <div class="grid-2">
+        <div class="demo-card">
+          <h3>Tháng này</h3>
+          <p class="desc">Card này dùng bg-secondary + border-default.</p>
+
+          <div class="balance">8.450.000đ</div>
+
+          <div class="badge-row">
+            <span class="badge badge-success">An toàn</span>
+            <span class="badge badge-warning">Cảnh báo</span>
+            <span class="badge badge-danger">Nguy hiểm</span>
+            <span class="badge badge-info">Thông tin</span>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn-gradient">Thiết lập tháng</button>
+            <button class="btn btn-secondary">Xem lịch sử</button>
+            <button class="btn btn-disabled">Disabled</button>
+          </div>
+        </div>
+
+        <div class="demo-card">
+          <h3>Form nhập chi tiêu</h3>
+          <p class="desc">Input dùng bg-card, border-default, border-focus.</p>
+
+          <label>
+            Tên chi tiêu
+            <input type="text" placeholder="Ví dụ: Cà phê" />
+          </label>
+
+          <label>
+            Danh mục
+            <select>
+              <option>Ăn uống</option>
+              <option>Di chuyển</option>
+              <option>Giải trí</option>
+            </select>
+          </label>
+
+          <label class="checkbox">
+            <input type="checkbox" checked />
+            Tính vào chi tiêu hôm nay
+          </label>
+
+          <div class="btn-row">
+            <button class="btn btn-primary">Lưu chi tiêu</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>08. Cách dùng trong dự án thật</h2>
+
+      <div class="usage">
+        <p>Background app: <code>var(--bg-primary)</code></p>
+        <p>Card: <code>var(--bg-card)</code></p>
+        <p>List item: <code>var(--bg-secondary)</code></p>
+        <p>Popup / dropdown: <code>var(--bg-elevated)</code></p>
+        <p>Title: <code>var(--text-primary)</code></p>
+        <p>Mô tả: <code>var(--text-secondary)</code></p>
+        <p>Caption: <code>var(--text-muted)</code></p>
+        <p>Border card/input: <code>var(--border-default)</code></p>
+        <p>Focus input: <code>var(--border-focus)</code></p>
+        <p>Nút chính: <code>var(--brand-green)</code> hoặc <code>var(--brand-gradient)</code></p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    const body = document.body;
+    const themeBtn = document.getElementById("themeBtn");
+
+    themeBtn.addEventListener("click", () => {
+      body.classList.toggle("dark");
+      body.classList.toggle("light");
+
+      const isLight = body.classList.contains("light");
+      themeBtn.textContent = isLight
+        ? "Đổi sang Dark Mode"
+        : "Đổi sang Light Mode";
+    });
+  </script>
+</body>
+</html>
