@@ -119,7 +119,7 @@
       /* =========================
          LAYOUT & COMPONENT SPACING TOKENS
       ========================= */
-      --layout-page-padding: var(--space-32);
+      --layout-page-padding: var(--layout-page-padding);
       --layout-page-padding-mobile: var(--space-16);
       --layout-section-gap: var(--space-24);
       --layout-card-gap: var(--space-16);
@@ -228,6 +228,16 @@
       --button-primary-disabled-text: var(--text-disabled);
       --button-primary-disabled-border: var(--border-disabled);
 
+      --button-secondary-bg: transparent;
+      --button-secondary-text: var(--brand-cyan);
+      --button-secondary-border: var(--brand-cyan);
+      --button-secondary-hover-bg: rgba(6, 182, 212, var(--opacity-8));
+      --button-secondary-active-bg: rgba(6, 182, 212, var(--opacity-16));
+      --button-secondary-focus: var(--brand-cyan);
+      --button-secondary-disabled-bg: transparent;
+      --button-secondary-disabled-text: var(--text-disabled);
+      --button-secondary-disabled-border: var(--border-disabled);
+
       --button-gradient-bg: var(--brand-gradient);
       --button-gradient-text: #FFFFFF;
       --button-gradient-border: transparent;
@@ -296,6 +306,16 @@
       --button-primary-disabled-text: var(--text-disabled);
       --button-primary-disabled-border: var(--border-disabled);
 
+      --button-secondary-bg: transparent;
+      --button-secondary-text: var(--brand-cyan);
+      --button-secondary-border: var(--brand-cyan);
+      --button-secondary-hover-bg: rgba(6, 182, 212, var(--opacity-8));
+      --button-secondary-active-bg: rgba(6, 182, 212, var(--opacity-16));
+      --button-secondary-focus: var(--brand-cyan);
+      --button-secondary-disabled-bg: transparent;
+      --button-secondary-disabled-text: var(--text-disabled);
+      --button-secondary-disabled-border: var(--border-disabled);
+
       --button-gradient-bg: var(--brand-gradient);
       --button-gradient-text: #FFFFFF;
       --button-gradient-border: transparent;
@@ -324,7 +344,7 @@
       font-family: var(--font-family-base);
       background: var(--bg-primary);
       color: var(--text-primary);
-      padding: var(--layout-page-padding);
+      padding: var(--space-32);
       transition: 0.25s ease;
     }
 
@@ -381,24 +401,6 @@
 
     .section h2 {
       margin-bottom: var(--space-8);
-      font-size: var(--font-heading-2-size);
-      line-height: var(--font-heading-2-line-height);
-      font-weight: var(--font-heading-2-weight);
-    }
-
-    h3 {
-      font-size: var(--font-display-lg-size);
-      line-height: var(--font-display-lg-line-height);
-      font-weight: var(--font-display-lg-weight);
-    }
-
-    p,
-    button,
-    input,
-    select,
-    label {
-      font-size: var(--font-body-md-size);
-      line-height: var(--font-body-md-line-height);
     }
 
     .desc {
@@ -537,9 +539,9 @@
     }
 
     .btn-secondary {
-      background: transparent;
-      color: var(--brand-cyan);
-      border: 1px solid var(--brand-cyan);
+      background: var(--button-secondary-bg);
+      color: var(--button-secondary-text);
+      border: 1px solid var(--button-secondary-border);
     }
 
     .btn-ghost {
@@ -649,6 +651,13 @@
       box-shadow: 0 0 0 3px rgba(6, 182, 212, var(--opacity-24));
     }
 
+    .btn-secondary:hover { background: var(--button-secondary-hover-bg); }
+    .btn-secondary:active { background: var(--button-secondary-active-bg); }
+    .btn-secondary:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(6, 182, 212, var(--opacity-24));
+    }
+
     .chart-row {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -686,7 +695,7 @@
       body { padding: var(--layout-page-padding-mobile); }
 
       .chart-row,
-      .grid,
+
       .grid-2 {
         grid-template-columns: 1fr;
       }
@@ -974,6 +983,9 @@
         <div class="token"><div class="token-name">button-primary-bg</div><div class="token-value">var(--brand-green)</div></div>
         <div class="token"><div class="token-name">button-primary-text</div><div class="token-value">var(--text-inverse)</div></div>
         <div class="token"><div class="token-name">button-primary-border</div><div class="token-value">var(--brand-green)</div></div>
+        <div class="token"><div class="token-name">button-secondary-bg</div><div class="token-value">transparent</div></div>
+        <div class="token"><div class="token-name">button-secondary-text</div><div class="token-value">var(--brand-cyan)</div></div>
+        <div class="token"><div class="token-name">button-secondary-border</div><div class="token-value">var(--brand-cyan)</div></div>
         <div class="token"><div class="token-name">button-gradient-bg</div><div class="token-value">var(--brand-gradient)</div></div>
         <div class="token"><div class="token-name">input-bg</div><div class="token-value">var(--bg-card)</div></div>
         <div class="token"><div class="token-name">input-border</div><div class="token-value">var(--border-default)</div></div>
@@ -991,6 +1003,10 @@
         <div class="token"><div class="token-name">button-primary-active</div><div class="token-value">#15803D</div></div>
         <div class="token"><div class="token-name">button-primary-focus</div><div class="token-value">var(--brand-cyan)</div></div>
         <div class="token"><div class="token-name">button-primary-disabled-bg</div><div class="token-value">var(--bg-elevated)</div></div>
+        <div class="token"><div class="token-name">button-secondary-hover-bg</div><div class="token-value">rgba(6,182,212,0.08)</div></div>
+        <div class="token"><div class="token-name">button-secondary-active-bg</div><div class="token-value">rgba(6,182,212,0.16)</div></div>
+        <div class="token"><div class="token-name">button-secondary-focus</div><div class="token-value">var(--brand-cyan)</div></div>
+        <div class="token"><div class="token-name">button-secondary-disabled-border</div><div class="token-value">var(--border-disabled)</div></div>
         <div class="token"><div class="token-name">input-border-hover</div><div class="token-value">var(--border-hover)</div></div>
         <div class="token"><div class="token-name">input-border-focus</div><div class="token-value">var(--border-focus)</div></div>
         <div class="token"><div class="token-name">input-disabled-bg</div><div class="token-value">var(--bg-elevated)</div></div>
@@ -1143,6 +1159,7 @@
         <p>Focus input: <code>var(--border-focus)</code></p>
         <p>Hero Button: <code>var(--brand-gradient)</code></p>
         <p>Primary Button: <code>var(--button-primary-bg)</code></p>
+        <p>Secondary Button: <code>var(--button-secondary-border)</code> + <code>var(--button-secondary-text)</code></p>
         <p>Button height: <code>var(--button-height-sm/md/lg/xl)</code></p>
         <p>Typography: <code>var(--font-heading-1-size)</code>, <code>var(--font-body-md-size)</code></p>
         <p>Chart income: <code>var(--chart-income)</code></p>
