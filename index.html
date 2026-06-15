@@ -1,1187 +1,530 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Save Game Design System</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System Foundations - Full Version</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
+    /* --- HỆ THỐNG TOKEN DESIGN SYSTEM --- */
     :root {
-      /* =========================
-         BRAND COLORS
-      ========================= */
-      --brand-green: #22C55E;
-      --brand-cyan: #06B6D4;
-      --brand-gradient: linear-gradient(135deg, #22C55E, #06B6D4);
+      /* 🟢 GREEN PALETTE */
+      --color-green-50:  #ecfdf5;
+      --color-green-100: #d1fae5;
+      --color-green-200: #a7f3d0;
+      --color-green-300: #6ee7b7;
+      --color-green-400: #34d399;
+      --color-green-500: #22c55e; /* base */
+      --color-green-600: #16a34a;
+      --color-green-700: #15803d;
+      --color-green-800: #166534;
+      --color-green-900: #14532d;
 
-      /* =========================
-         STATUS COLORS
-      ========================= */
-      --success: #22C55E;
-      --warning: #F59E0B;
-      --danger: #EF4444;
-      --info: #06B6D4;
+      /* 🔵 CYAN PALETTE */
+      --color-cyan-50:  #ecfeff;
+      --color-cyan-100: #cffafe;
+      --color-cyan-200: #a5f3fc;
+      --color-cyan-300: #67e8f9;
+      --color-cyan-400: #22d3ee;
+      --color-cyan-500: #06b6d4; /* base */
+      --color-cyan-600: #0891b2;
+      --color-cyan-700: #0e7490;
+      --color-cyan-800: #155e75;
+      --color-cyan-900: #164e63;
 
-      /* =========================
-         NEUTRAL PALETTE
-      ========================= */
-      --gray-950: #010713;
-      --gray-925: #07111F;
-      --gray-900: #0B1626;
-      --gray-850: #122033;
-      --gray-800: #1E2D44;
-      --gray-700: #334155;
-      --gray-600: #475569;
-      --gray-500: #64748B;
-      --gray-400: #94A3B8;
-      --gray-300: #CBD5E1;
-      --gray-200: #E2E8F0;
-      --gray-100: #F1F5F9;
-      --gray-50: #F8FAFC;
+      /* ⚫ GRAY PALETTE */
+      --color-gray-50:  #f8fafc;
+      --color-gray-100: #f1f5f9;
+      --color-gray-200: #e2e8f0;
+      --color-gray-300: #cbd5f5;
+      --color-gray-400: #94a3b8;
+      --color-gray-500: #64748b;
+      --color-gray-600: #475569;
+      --color-gray-700: #334155;
+      --color-gray-800: #1e293b;
+      --color-gray-900: #0f172a; /* base */
 
-      /* =========================
-         RADIUS
-      ========================= */
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-      --radius-xl: 24px;
+      /* 🟠 ORANGE PALETTE */
+      --color-orange-50:  #fffbeb;
+      --color-orange-100: #fef3c7;
+      --color-orange-200: #fde68a;
+      --color-orange-300: #fcd34d;
+      --color-orange-400: #fbbf24;
+      --color-orange-500: #f59e0b; /* base */
+      --color-orange-600: #d97706;
+      --color-orange-700: #b45309;
+      --color-orange-800: #92400e;
+      --color-orange-900: #78350f;
 
-      /* =========================
-         SPACING
-      ========================= */
-      --space-4: 4px;
-      --space-8: 8px;
-      --space-12: 12px;
-      --space-16: 16px;
-      --space-24: 24px;
-      --space-32: 32px;
-      --space-48: 48px;
+      /* 🔴 RED PALETTE */
+      --color-red-50:  #fef2f2;
+      --color-red-100: #fee2e2;
+      --color-red-200: #fecaca;
+      --color-red-300: #fca5a5;
+      --color-red-400: #f87171;
+      --color-red-500: #ef4444; /* base */
+      --color-red-600: #dc2626;
+      --color-red-700: #b91c1c;
+      --color-red-800: #991b1b;
+      --color-red-900: #7f1d1d;
 
-      /* =========================
-         TYPOGRAPHY TOKENS
-         Font: Raleway
-         Chỉ dùng size: 32 / 24 / 16 / 12 / 10
-      ========================= */
-      --font-family-base: 'Raleway', Arial, sans-serif;
-
-      --font-size-32: 32px;
-      --font-size-24: 24px;
-      --font-size-16: 16px;
-      --font-size-12: 12px;
-      --font-size-10: 10px;
+      /* 🔤 TYPOGRAPHY */
+      --font-family-base: 'Raleway', sans-serif;
+      --font-size-h1: 2rem;       /* 32px */
+      --font-size-h2: 1.5rem;     /* 24px */
+      --font-size-h3: 1.25rem;    /* 20px */
+      --font-size-body: 1rem;     /* 16px */
+      --font-size-button: 0.875rem; /* 14px */
+      --font-size-label: 0.875rem;  /* 14px */
+      --font-size-caption: 0.75rem; /* 12px */
 
       --font-weight-regular: 400;
-      --font-weight-medium: 500;
       --font-weight-semibold: 600;
       --font-weight-bold: 700;
-      --font-weight-extra-bold: 800;
 
-      --line-height-tight: 1.2;
-      --line-height-normal: 1.5;
-      --line-height-relaxed: 1.6;
+      /* 📐 SPACING */
+      --spacing-xs: 0.25rem; /* 4px */
+      --spacing-sm: 0.5rem;  /* 8px */
+      --spacing-md: 1rem;    /* 16px */
+      --spacing-lg: 1.5rem;  /* 24px */
+      --spacing-xl: 2rem;    /* 32px */
 
-      --font-display-xl-size: var(--font-size-32);
-      --font-display-xl-weight: var(--font-weight-extra-bold);
-      --font-display-xl-line-height: var(--line-height-tight);
+      /* 🔲 RADIUS */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
 
-      --font-display-lg-size: var(--font-size-24);
-      --font-display-lg-weight: var(--font-weight-bold);
-      --font-display-lg-line-height: var(--line-height-tight);
+      /* 👥 ELEVATION (BOX SHADOW) */
+      --elevation-none: none;
+      --elevation-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --elevation-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --elevation-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --elevation-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
-      --font-heading-1-size: var(--font-size-32);
-      --font-heading-1-weight: var(--font-weight-bold);
-      --font-heading-1-line-height: var(--line-height-tight);
+      /* 💧 OPACITY */
+      --opacity-transparent: 0;
+      --opacity-hover: 0.08;
+      --opacity-disabled: 0.38;
+      --opacity-medium: 0.6;
+      --opacity-high: 0.87;
+      --opacity-opaque: 1;
 
-      --font-heading-2-size: var(--font-size-24);
-      --font-heading-2-weight: var(--font-weight-bold);
-      --font-heading-2-line-height: var(--line-height-tight);
-
-      --font-body-lg-size: var(--font-size-16);
-      --font-body-lg-weight: var(--font-weight-medium);
-      --font-body-lg-line-height: var(--line-height-relaxed);
-
-      --font-body-md-size: var(--font-size-16);
-      --font-body-md-weight: var(--font-weight-regular);
-      --font-body-md-line-height: var(--line-height-normal);
-
-      --font-body-sm-size: var(--font-size-12);
-      --font-body-sm-weight: var(--font-weight-medium);
-      --font-body-sm-line-height: var(--line-height-normal);
-
-      --font-caption-size: var(--font-size-10);
-      --font-caption-weight: var(--font-weight-semibold);
-      --font-caption-line-height: var(--line-height-normal);
-
-      /* =========================
-         LAYOUT & COMPONENT SPACING TOKENS
-      ========================= */
-      --layout-page-padding: var(--layout-page-padding);
-      --layout-page-padding-mobile: var(--space-16);
-      --layout-section-gap: var(--space-24);
-      --layout-card-gap: var(--space-16);
-
-      --component-padding-sm: var(--space-8);
-      --component-padding-md: var(--space-16);
-      --component-padding-lg: var(--space-24);
-      --component-gap-sm: var(--space-8);
-      --component-gap-md: var(--space-12);
-      --component-gap-lg: var(--space-16);
-
-      /* =========================
-         ELEVATION TOKENS
-      ========================= */
-      --shadow-1: 0 4px 12px rgba(0, 0, 0, 0.18);
-      --shadow-2: 0 12px 28px rgba(0, 0, 0, 0.24);
-      --shadow-3: 0 24px 60px rgba(0, 0, 0, 0.34);
-      --shadow-card: var(--shadow-1);
-      --shadow-modal: var(--shadow-3);
-      --shadow-bottom-sheet: 0 -12px 40px rgba(0, 0, 0, 0.32);
-
-      /* =========================
-         OPACITY TOKENS
-      ========================= */
-      --opacity-4: 0.04;
-      --opacity-8: 0.08;
-      --opacity-12: 0.12;
-      --opacity-16: 0.16;
-      --opacity-24: 0.24;
-      --opacity-48: 0.48;
-
-      /* =========================
-         CHART TOKENS
-      ========================= */
-      --chart-income: #22C55E;
-      --chart-expense: #EF4444;
-      --chart-saving: #06B6D4;
-      --chart-investment: #8B5CF6;
-      --chart-forecast: #F59E0B;
-
-      /* =========================
-         COMPONENT SIZE TOKENS
-      ========================= */
-      --button-height-sm: 32px;
-      --button-height-md: 40px;
-      --button-height-lg: 48px;
-      --button-height-xl: 52px;
-      --button-padding-x-sm: var(--space-12);
-      --button-padding-x-md: var(--space-16);
-      --button-padding-x-lg: var(--space-24);
-      --button-icon-gap: var(--space-8);
-
-      --input-height-md: 48px;
-      --input-padding-x: var(--space-16);
-      --card-padding-md: var(--space-24);
-      --modal-padding-md: var(--space-24);
+      /* 🌓 MAPPING MÀU THEO LIGHT MODE (Mặc định) */
+      --bg-body: var(--color-gray-50);
+      --bg-card: #ffffff;
+      --bg-demo-box: var(--color-gray-100);
+      --border-color: var(--color-gray-200);
+      --text-main: var(--color-gray-900);
+      --text-muted: var(--color-gray-500);
+      --text-heading: var(--color-gray-800);
     }
 
-    /* =========================
-       DARK MODE SEMANTIC TOKENS
-    ========================= */
-
-    body.dark {
-      --bg-primary: #010713;
-      --bg-secondary: #07111F;
-      --bg-card: #0B1626;
-      --bg-elevated: #122033;
-
-      --text-primary: #FFFFFF;
-      --text-secondary: #CBD5E1;
-      --text-muted: #94A3B8;
-      --text-disabled: #64748B;
-      --text-inverse: #010713;
-
-      --border-default: #1E2D44;
-      --border-hover: #334155;
-      --border-focus: #06B6D4;
-      --border-disabled: #122033;
-
-      /* Semantic aliases đặt tên đầy đủ */
-      --color-background-app: var(--bg-primary);
-      --color-background-section: var(--bg-secondary);
-      --color-background-card: var(--bg-card);
-      --color-background-elevated: var(--bg-elevated);
-      --color-background-disabled: var(--bg-elevated);
-
-      --color-text-primary: var(--text-primary);
-      --color-text-secondary: var(--text-secondary);
-      --color-text-muted: var(--text-muted);
-      --color-text-disabled: var(--text-disabled);
-      --color-text-on-brand: var(--text-inverse);
-      --color-text-on-gradient: #FFFFFF;
-
-      --color-border-default: var(--border-default);
-      --color-border-hover: var(--border-hover);
-      --color-border-focus: var(--border-focus);
-      --color-border-disabled: var(--border-disabled);
-
-      --button-primary-bg: var(--brand-green);
-      --button-primary-text: var(--text-inverse);
-      --button-primary-border: var(--brand-green);
-      --button-primary-hover: #16A34A;
-      --button-primary-active: #15803D;
-      --button-primary-focus: var(--brand-cyan);
-      --button-primary-disabled-bg: var(--bg-elevated);
-      --button-primary-disabled-text: var(--text-disabled);
-      --button-primary-disabled-border: var(--border-disabled);
-
-      --button-secondary-bg: transparent;
-      --button-secondary-text: var(--brand-cyan);
-      --button-secondary-border: var(--brand-cyan);
-      --button-secondary-hover-bg: rgba(6, 182, 212, var(--opacity-8));
-      --button-secondary-active-bg: rgba(6, 182, 212, var(--opacity-16));
-      --button-secondary-focus: var(--brand-cyan);
-      --button-secondary-disabled-bg: transparent;
-      --button-secondary-disabled-text: var(--text-disabled);
-      --button-secondary-disabled-border: var(--border-disabled);
-
-      --button-gradient-bg: var(--brand-gradient);
-      --button-gradient-text: #FFFFFF;
-      --button-gradient-border: transparent;
-
-      --input-bg: var(--bg-card);
-      --input-text: var(--text-primary);
-      --input-placeholder: var(--text-muted);
-      --input-border: var(--border-default);
-      --input-border-hover: var(--border-hover);
-      --input-border-focus: var(--border-focus);
-      --input-disabled-bg: var(--bg-elevated);
-      --input-disabled-text: var(--text-disabled);
-
-      --card-bg: var(--bg-secondary);
-      --card-border: var(--border-default);
-      --card-shadow: var(--shadow-card);
+    /* 🌙 MAPPING MÀU THEO DARK MODE */
+    [data-theme="dark"] {
+      --bg-body: var(--color-gray-900);
+      --bg-card: var(--color-gray-800);
+      --bg-demo-box: var(--color-gray-700);
+      --border-color: var(--color-gray-700);
+      --text-main: var(--color-gray-50);
+      --text-muted: var(--color-gray-400);
+      --text-heading: var(--color-gray-100);
     }
 
-    /* =========================
-       LIGHT MODE SEMANTIC TOKENS
-    ========================= */
-
-    body.light {
-      --bg-primary: #F8FAFC;
-      --bg-secondary: #FFFFFF;
-      --bg-card: #FFFFFF;
-      --bg-elevated: #F1F5F9;
-
-      --text-primary: #0F172A;
-      --text-secondary: #334155;
-      --text-muted: #64748B;
-      --text-disabled: #94A3B8;
-      --text-inverse: #FFFFFF;
-
-      --border-default: #E2E8F0;
-      --border-hover: #CBD5E1;
-      --border-focus: #06B6D4;
-      --border-disabled: #E2E8F0;
-
-      /* Semantic aliases đặt tên đầy đủ */
-      --color-background-app: var(--bg-primary);
-      --color-background-section: var(--bg-secondary);
-      --color-background-card: var(--bg-card);
-      --color-background-elevated: var(--bg-elevated);
-      --color-background-disabled: var(--bg-elevated);
-
-      --color-text-primary: var(--text-primary);
-      --color-text-secondary: var(--text-secondary);
-      --color-text-muted: var(--text-muted);
-      --color-text-disabled: var(--text-disabled);
-      --color-text-on-brand: var(--text-inverse);
-      --color-text-on-gradient: #FFFFFF;
-
-      --color-border-default: var(--border-default);
-      --color-border-hover: var(--border-hover);
-      --color-border-focus: var(--border-focus);
-      --color-border-disabled: var(--border-disabled);
-
-      --button-primary-bg: var(--brand-green);
-      --button-primary-text: var(--text-inverse);
-      --button-primary-border: var(--brand-green);
-      --button-primary-hover: #16A34A;
-      --button-primary-active: #15803D;
-      --button-primary-focus: var(--brand-cyan);
-      --button-primary-disabled-bg: var(--bg-elevated);
-      --button-primary-disabled-text: var(--text-disabled);
-      --button-primary-disabled-border: var(--border-disabled);
-
-      --button-secondary-bg: transparent;
-      --button-secondary-text: var(--brand-cyan);
-      --button-secondary-border: var(--brand-cyan);
-      --button-secondary-hover-bg: rgba(6, 182, 212, var(--opacity-8));
-      --button-secondary-active-bg: rgba(6, 182, 212, var(--opacity-16));
-      --button-secondary-focus: var(--brand-cyan);
-      --button-secondary-disabled-bg: transparent;
-      --button-secondary-disabled-text: var(--text-disabled);
-      --button-secondary-disabled-border: var(--border-disabled);
-
-      --button-gradient-bg: var(--brand-gradient);
-      --button-gradient-text: #FFFFFF;
-      --button-gradient-border: transparent;
-
-      --input-bg: var(--bg-card);
-      --input-text: var(--text-primary);
-      --input-placeholder: var(--text-muted);
-      --input-border: var(--border-default);
-      --input-border-hover: var(--border-hover);
-      --input-border-focus: var(--border-focus);
-      --input-disabled-bg: var(--bg-elevated);
-      --input-disabled-text: var(--text-disabled);
-
-      --card-bg: var(--bg-secondary);
-      --card-border: var(--border-default);
-      --card-shadow: var(--shadow-card);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    /* --- GIAO DIỆN HIỂN THỊ (CSS STYLING) --- */
     body {
       font-family: var(--font-family-base);
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      padding: var(--space-32);
-      transition: 0.25s ease;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      margin: 0;
+      padding: 40px 20px;
+      line-height: 1.5;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     .container {
       max-width: 1200px;
-      margin: auto;
+      margin: 0 auto;
     }
 
-    .header {
+    header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: var(--space-32);
+      margin-bottom: 40px;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 20px;
     }
 
     h1 {
-      font-size: var(--font-heading-1-size);
-      line-height: var(--font-heading-1-line-height);
-      font-weight: var(--font-heading-1-weight);
+      font-size: var(--font-size-h1);
+      font-weight: var(--font-weight-bold);
+      margin: 0 0 10px 0;
+      color: var(--text-heading);
     }
 
-    h1 span {
-      background: var(--brand-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .subtitle {
-      color: var(--text-muted);
-      margin-top: var(--space-8);
-    }
-
-    .theme-btn {
-      height: var(--button-height-md);
-      padding: 0 var(--button-padding-x-md);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--button-icon-gap);
+    .theme-toggle-btn {
+      background: var(--color-green-500);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      font-family: inherit;
+      font-size: var(--font-size-button);
+      font-weight: var(--font-weight-semibold);
       border-radius: var(--radius-md);
-      border: 1px solid var(--border-default);
-      background: var(--bg-card);
-      color: var(--text-primary);
       cursor: pointer;
+      box-shadow: var(--elevation-sm);
+      transition: background-color 0.2s;
+    }
+    .theme-toggle-btn:hover {
+      background: var(--color-green-600);
     }
 
-    .section {
+    .main-section {
       background: var(--bg-card);
-      border: 1px solid var(--border-default);
+      padding: var(--spacing-lg);
       border-radius: var(--radius-lg);
-      padding: var(--space-24);
-      margin-bottom: var(--space-24);
+      box-shadow: var(--elevation-md);
+      margin-bottom: var(--spacing-xl);
+      border: 1px solid var(--border-color);
+      transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
     }
 
-    .section h2 {
-      margin-bottom: var(--space-8);
+    .section-title {
+      font-size: var(--font-size-h2);
+      font-weight: var(--font-weight-semibold);
+      margin-top: 0;
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-heading);
     }
 
-    .desc {
-      color: var(--text-muted);
-      margin-bottom: var(--space-24);
-      line-height: 1.6;
-    }
-
-    .grid {
+    /* Grid layouts */
+    .display-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-16);
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--spacing-md);
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-16);
-    }
-
-    .token {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-default);
+    .demo-card {
+      background: var(--bg-demo-box);
+      border: 1px solid var(--border-color);
       border-radius: var(--radius-md);
-      padding: var(--space-16);
-    }
-
-    .swatch {
-      height: 76px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-default);
-      margin-bottom: var(--space-12);
+      padding: var(--spacing-md);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .token-name {
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .token-value {
+      font-family: monospace;
+      font-size: var(--font-size-caption);
       color: var(--text-muted);
-      font-size: var(--font-body-sm-size);
-      line-height: 1.5;
+      background: var(--bg-body);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      align-self: flex-start;
+      margin-bottom: var(--spacing-sm);
     }
 
-    /* Brand */
-    .brand-green { background: #22C55E; }
-    .brand-cyan { background: #06B6D4; }
-    .brand-gradient { background: var(--brand-gradient); }
+    /* Typography Styles */
+    .typo-row { display: flex; flex-direction: column; gap: var(--spacing-md); }
+    .typo-item { display: flex; align-items: center; border-bottom: 1px dashed var(--border-color); padding-bottom: var(--spacing-sm); }
+    .typo-label { width: 160px; font-weight: var(--font-weight-semibold); color: var(--text-muted); }
+    
+    /* Box biểu diễn cấu trúc hình học */
+    .spacing-box { background: var(--color-green-500); height: 24px; border-radius: var(--radius-sm); }
+    .radius-swatch { background: var(--color-cyan-500); height: 60px; width: 100%; margin-top: var(--spacing-sm); }
 
-    /* Neutral */
-    .gray-950 { background: #010713; }
-    .gray-925 { background: #07111F; }
-    .gray-900 { background: #0B1626; }
-    .gray-850 { background: #122033; }
-    .gray-800 { background: #1E2D44; }
-    .gray-700 { background: #334155; }
-    .gray-600 { background: #475569; }
-    .gray-500 { background: #64748B; }
-    .gray-400 { background: #94A3B8; }
-    .gray-300 { background: #CBD5E1; }
-    .gray-200 { background: #E2E8F0; }
-    .gray-100 { background: #F1F5F9; }
-    .gray-50 { background: #F8FAFC; }
-
-    /* Status */
-    .success-bg { background: #22C55E; }
-    .warning-bg { background: #F59E0B; }
-    .danger-bg { background: #EF4444; }
-    .info-bg { background: #06B6D4; }
-
-    /* Semantic swatches */
-    .bg-primary { background: var(--bg-primary); }
-    .bg-secondary { background: var(--bg-secondary); }
-    .bg-card { background: var(--bg-card); }
-    .bg-elevated { background: var(--bg-elevated); }
-
-    .text-primary { background: var(--text-primary); }
-    .text-secondary { background: var(--text-secondary); }
-    .text-muted { background: var(--text-muted); }
-    .text-disabled { background: var(--text-disabled); }
-
-    .border-default { background: var(--border-default); }
-    .border-hover { background: var(--border-hover); }
-    .border-focus { background: var(--border-focus); }
-    .border-disabled { background: var(--border-disabled); }
-
-    .demo-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-default);
-      border-radius: var(--radius-lg);
-      padding: var(--space-24);
-    }
-
-    .balance {
-      font-size: var(--font-display-xl-size);
-      line-height: var(--font-display-xl-line-height);
-      font-weight: 800;
-      margin: var(--space-12) 0;
-      background: var(--brand-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .btn-row,
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-12);
-      margin-top: var(--space-16);
-    }
-
-    .btn {
-      height: var(--button-height-md);
-      padding: 0 var(--button-padding-x-md);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--button-icon-gap);
-      border-radius: var(--radius-md);
-      font-weight: 700;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn-primary {
-      background: var(--button-primary-bg);
-      color: var(--button-primary-text);
-      border: 1px solid var(--button-primary-border);
-    }
-
-    .btn-gradient {
-      background: var(--button-gradient-bg);
-      color: var(--button-gradient-text);
-      border: 1px solid var(--button-gradient-border);
-    }
-
-    .btn-secondary {
-      background: var(--button-secondary-bg);
-      color: var(--button-secondary-text);
-      border: 1px solid var(--button-secondary-border);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--text-secondary);
-    }
-
-    .btn-disabled {
-      background: var(--button-primary-disabled-bg);
-      color: var(--button-primary-disabled-text);
-      border: 1px solid var(--button-primary-disabled-border);
-      cursor: not-allowed;
-    }
-
-    .badge {
-      padding: var(--space-8) var(--space-12);
-      border-radius: 999px;
-      font-size: var(--font-body-sm-size);
-      font-weight: 700;
-    }
-
-    .badge-success {
-      background: rgba(34, 197, 94, var(--opacity-16));
-      color: var(--success);
-    }
-
-    .badge-warning {
-      background: rgba(245, 158, 11, var(--opacity-16));
-      color: var(--warning);
-    }
-
-    .badge-danger {
-      background: rgba(239, 68, 68, var(--opacity-16));
-      color: var(--danger);
-    }
-
-    .badge-info {
-      background: rgba(6, 182, 212, var(--opacity-16));
-      color: var(--info);
-    }
-
-    input,
-    select {
-      width: 100%;
-      margin-top: var(--space-8);
-      margin-bottom: var(--space-16);
-      height: var(--input-height-md);
-      padding: 0 var(--input-padding-x);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-default);
-      background: var(--bg-card);
-      color: var(--text-primary);
-      outline: none;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: var(--border-focus);
-      box-shadow: 0 0 0 3px rgba(6, 182, 212, var(--opacity-16));
-    }
-
-    label {
-      color: var(--text-secondary);
-      font-size: var(--font-body-sm-size);
-    }
-
-    .checkbox {
-      display: flex;
-      align-items: center;
-      gap: var(--space-8);
-      color: var(--text-secondary);
-    }
-
-    .checkbox input {
-      width: 18px;
-      height: 18px;
-      margin: 0;
-      accent-color: var(--brand-green);
-    }
-
-    .usage {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-default);
-      border-radius: var(--radius-md);
-      padding: var(--component-padding-md);
-      line-height: 1.8;
-      color: var(--text-secondary);
-    }
-
-    code {
-      background: var(--bg-elevated);
-      color: var(--brand-cyan);
-      padding: 3px 6px;
-      border-radius: 6px;
-    }
-
-
-    .btn-sm { height: var(--button-height-sm); }
-    .btn-md { height: var(--button-height-md); }
-    .btn-lg { height: var(--button-height-lg); }
-    .btn-xl { height: var(--button-height-xl); }
-
-    .btn-primary:hover { background: var(--button-primary-hover); }
-    .btn-primary:active { background: var(--button-primary-active); }
-    .btn-primary:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(6, 182, 212, var(--opacity-24));
-    }
-
-    .btn-secondary:hover { background: var(--button-secondary-hover-bg); }
-    .btn-secondary:active { background: var(--button-secondary-active-bg); }
-    .btn-secondary:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(6, 182, 212, var(--opacity-24));
-    }
-
-    .chart-row {
+    /* Elevation Styles */
+    .elevation-container {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: var(--space-16);
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: var(--spacing-lg);
     }
-
-    .chart-income { background: var(--chart-income); }
-    .chart-expense { background: var(--chart-expense); }
-    .chart-saving { background: var(--chart-saving); }
-    .chart-investment { background: var(--chart-investment); }
-    .chart-forecast { background: var(--chart-forecast); }
-
-    .spec-table {
-      width: 100%;
-      border-collapse: collapse;
-      overflow: hidden;
+    .elevation-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: var(--spacing-lg);
+      text-align: center;
       border-radius: var(--radius-md);
-      font-size: var(--font-body-sm-size);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-heading);
     }
 
-    .spec-table th,
-    .spec-table td {
-      border: 1px solid var(--border-default);
-      padding: var(--space-12);
-      text-align: left;
-      color: var(--text-secondary);
+    /* Opacity Styles */
+    .opacity-container {
+      background: var(--color-gray-900);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+    }
+    .opacity-block {
+      background: #ffffff;
+      color: #000000;
+      padding: var(--spacing-sm);
+      margin-bottom: var(--spacing-sm);
+      font-weight: var(--font-weight-bold);
+      text-align: center;
+      border-radius: var(--radius-sm);
     }
 
-    .spec-table th {
-      color: var(--text-primary);
-      background: var(--bg-elevated);
+    /* Palette layout */
+    .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: var(--spacing-xs); margin-bottom: var(--spacing-md); }
+    .color-swatch-box { height: 50px; border-radius: var(--radius-sm); border: 1px solid rgba(0,0,0,0.1); }
+    .color-meta { font-size: 10px; margin-top: 4px; font-family: monospace; text-align: center; color: var(--text-main); }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: var(--spacing-lg);
+      right: var(--spacing-lg);
+      background: var(--color-gray-900);
+      color: #ffffff;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-button);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.3s;
+      z-index: 1000;
     }
-
-    @media (max-width: 900px) {
-      body { padding: var(--layout-page-padding-mobile); }
-
-      .chart-row,
-
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-
-      .header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--space-16);
-      }
-    }
+    .toast.show { transform: translateY(0); opacity: 1; }
   </style>
 </head>
+<body>
 
-<body class="dark">
   <div class="container">
-
-    <header class="header">
+    <header>
       <div>
-        <h1>SAVE <span>GAME</span></h1>
-        <p class="subtitle">Design System Foundation — Dark Mode & Light Mode</p>
+        <h1>Save Game - Design System Foundations</h1>
+        <p style="color: var(--text-muted); margin: 0;">Đầy đủ Color, Typography, Spacing, Radius, Elevation và Opacity (Light/Dark Mode).</p>
       </div>
-
-      <button class="theme-btn" id="themeBtn">Đổi sang Light Mode</button>
+      <button class="theme-toggle-btn" id="theme-toggle">Chế độ tối 🌙</button>
     </header>
 
-    <section class="section">
-      <h2>01. Brand Colors</h2>
-      <p class="desc">Màu thương hiệu. Dùng cho CTA, icon chính, progress, link, focus, điểm nhấn.</p>
+    <main>
+      <section class="main-section">
+        <h2 class="section-title">🎨 Color Foundations</h2>
+        <p style="font-size: 14px; margin-top: -10px; color: var(--text-muted);">Click vào ô màu bất kỳ để copy mã HEX.</p>
+        <div id="palette-wrapper"></div>
+      </section>
 
-      <div class="grid">
-        <div class="token">
-          <div class="swatch brand-green"></div>
-          <div class="token-name">Brand Green</div>
-          <div class="token-value">#22C55E</div>
-        </div>
-
-        <div class="token">
-          <div class="swatch brand-cyan"></div>
-          <div class="token-name">Brand Cyan</div>
-          <div class="token-value">#06B6D4</div>
-        </div>
-
-        <div class="token">
-          <div class="swatch brand-gradient"></div>
-          <div class="token-name">Brand Gradient</div>
-          <div class="token-value">#22C55E → #06B6D4</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>02. Neutral Color Palette</h2>
-      <p class="desc">Bộ Neutral đã được chỉnh tối hơn để hợp Dark UI của Save Game.</p>
-
-      <div class="grid">
-        <div class="token"><div class="swatch gray-950"></div><div class="token-name">Gray 950</div><div class="token-value">#010713</div></div>
-        <div class="token"><div class="swatch gray-925"></div><div class="token-name">Gray 925</div><div class="token-value">#07111F</div></div>
-        <div class="token"><div class="swatch gray-900"></div><div class="token-name">Gray 900</div><div class="token-value">#0B1626</div></div>
-        <div class="token"><div class="swatch gray-850"></div><div class="token-name">Gray 850</div><div class="token-value">#122033</div></div>
-        <div class="token"><div class="swatch gray-800"></div><div class="token-name">Gray 800</div><div class="token-value">#1E2D44</div></div>
-        <div class="token"><div class="swatch gray-700"></div><div class="token-name">Gray 700</div><div class="token-value">#334155</div></div>
-        <div class="token"><div class="swatch gray-600"></div><div class="token-name">Gray 600</div><div class="token-value">#475569</div></div>
-        <div class="token"><div class="swatch gray-500"></div><div class="token-name">Gray 500</div><div class="token-value">#64748B</div></div>
-        <div class="token"><div class="swatch gray-400"></div><div class="token-name">Gray 400</div><div class="token-value">#94A3B8</div></div>
-        <div class="token"><div class="swatch gray-300"></div><div class="token-name">Gray 300</div><div class="token-value">#CBD5E1</div></div>
-        <div class="token"><div class="swatch gray-200"></div><div class="token-name">Gray 200</div><div class="token-value">#E2E8F0</div></div>
-        <div class="token"><div class="swatch gray-100"></div><div class="token-name">Gray 100</div><div class="token-value">#F1F5F9</div></div>
-        <div class="token"><div class="swatch gray-50"></div><div class="token-name">Gray 50</div><div class="token-value">#F8FAFC</div></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>03. Status Colors</h2>
-      <p class="desc">Dùng cho trạng thái tài chính: an toàn, cảnh báo, nguy hiểm, thông tin.</p>
-
-      <div class="grid">
-        <div class="token"><div class="swatch success-bg"></div><div class="token-name">Success</div><div class="token-value">#22C55E</div></div>
-        <div class="token"><div class="swatch warning-bg"></div><div class="token-name">Warning</div><div class="token-value">#F59E0B</div></div>
-        <div class="token"><div class="swatch danger-bg"></div><div class="token-name">Danger</div><div class="token-value">#EF4444</div></div>
-        <div class="token"><div class="swatch info-bg"></div><div class="token-name">Info</div><div class="token-value">#06B6D4</div></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>04. Semantic Token — Background</h2>
-      <p class="desc">Đây là token dùng thật trong UI. Dark Mode đã tối hơn bản trước.</p>
-
-      <div class="grid">
-        <div class="token">
-          <div class="swatch bg-primary"></div>
-          <div class="token-name">bg-primary</div>
-          <div class="token-value">
-            Dùng: nền toàn app<br>
-            Dark: #010713<br>
-            Light: #F8FAFC
+      <section class="main-section">
+        <h2 class="section-title">🔤 Typography Foundation</h2>
+        <div class="typo-row">
+          <div class="typo-item">
+            <span class="typo-label">Heading 1 (32px)</span>
+            <span class="token-name" style="margin-right:20px">--font-size-h1</span>
+            <h1 style="font-size: var(--font-size-h1); margin:0; color: var(--text-heading);">H1. Tiêu đề chính hệ thống</h1>
+          </div>
+          <div class="typo-item">
+            <span class="typo-label">Heading 2 (24px)</span>
+            <span class="token-name" style="margin-right:20px">--font-size-h2</span>
+            <h2 style="font-size: var(--font-size-h2); margin:0; color: var(--text-heading);">H2. Tiêu đề vùng nội dung</h2>
+          </div>
+          <div class="typo-item">
+            <span class="typo-label">Heading 3 (20px)</span>
+            <span class="token-name" style="margin-right:20px">--font-size-h3</span>
+            <h3 style="font-size: var(--font-size-h3); margin:0; color: var(--text-heading);">H3. Tiêu đề khối / Box nhỏ</h3>
+          </div>
+          <div class="typo-item">
+            <span class="typo-label">Body (16px)</span>
+            <span class="token-name" style="margin-right:20px">--font-size-body</span>
+            <p style="font-size: var(--font-size-body); margin:0;">Chữ văn bản nội dung thông thường (Body text) sử dụng font chữ Raleway.</p>
+          </div>
+          <div class="typo-item">
+            <span class="typo-label">Button / Label (14px)</span>
+            <span class="token-name" style="margin-right:20px">--font-size-button</span>
+            <span style="font-size: var(--font-size-button); font-weight: var(--font-weight-semibold); background: var(--color-green-500); color: white; padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-sm)">LABEL TEXT</span>
+          </div>
+          <div class="typo-item">
+            <span class="typo-label">Caption (12px)</span>
+            <span class="token-name" style="margin-right:20px">--font-size-caption</span>
+            <span style="font-size: var(--font-size-caption); color: var(--text-muted)">* Text ghi chú hoặc mô tả phụ nhỏ</span>
           </div>
         </div>
+      </section>
 
-        <div class="token">
-          <div class="swatch bg-secondary"></div>
-          <div class="token-name">bg-secondary</div>
-          <div class="token-value">
-            Dùng: section phụ, list item<br>
-            Dark: #07111F<br>
-            Light: #FFFFFF
+      <section class="main-section">
+        <h2 class="section-title">📐 Spacing Foundation</h2>
+        <div class="display-grid">
+          <div class="demo-card">
+            <span class="token-name">--spacing-xs (4px)</span>
+            <div class="spacing-box" style="width: var(--spacing-xs)"></div>
+          </div>
+          <div class="demo-card">
+            <span class="token-name">--spacing-sm (8px)</span>
+            <div class="spacing-box" style="width: var(--spacing-sm)"></div>
+          </div>
+          <div class="demo-card">
+            <span class="token-name">--spacing-md (16px)</span>
+            <div class="spacing-box" style="width: var(--spacing-md)"></div>
+          </div>
+          <div class="demo-card">
+            <span class="token-name">--spacing-lg (24px)</span>
+            <div class="spacing-box" style="width: var(--spacing-lg)"></div>
+          </div>
+          <div class="demo-card">
+            <span class="token-name">--spacing-xl (32px)</span>
+            <div class="spacing-box" style="width: var(--spacing-xl)"></div>
           </div>
         </div>
+      </section>
 
-        <div class="token">
-          <div class="swatch bg-card"></div>
-          <div class="token-name">bg-card</div>
-          <div class="token-value">
-            Dùng: card, form, block<br>
-            Dark: #0B1626<br>
-            Light: #FFFFFF
+      <section class="main-section">
+        <h2 class="section-title">🔲 Border Radius Foundation</h2>
+        <div class="display-grid">
+          <div class="demo-card">
+            <span class="token-name">--radius-sm (4px)</span>
+            <div class="radius-swatch" style="border-radius: var(--radius-sm)"></div>
+          </div>
+          <div class="demo-card">
+            <span class="token-name">--radius-md (8px)</span>
+            <div class="radius-swatch" style="border-radius: var(--radius-md)"></div>
+          </div>
+          <div class="demo-card">
+            <span class="token-name">--radius-lg (12px)</span>
+            <div class="radius-swatch" style="border-radius: var(--radius-lg)"></div>
+          </div>
+          <div class="demo-card">
+            <span class="token-name">--radius-full (9999px)</span>
+            <div class="radius-swatch" style="border-radius: var(--radius-full); width: 60px; height: 60px; margin: 0 auto;"></div>
           </div>
         </div>
+      </section>
 
-        <div class="token">
-          <div class="swatch bg-elevated"></div>
-          <div class="token-name">bg-elevated</div>
-          <div class="token-value">
-            Dùng: popup, dropdown, disabled bg<br>
-            Dark: #122033<br>
-            Light: #F1F5F9
+      <section class="main-section">
+        <h2 class="section-title">👥 Elevation Foundation (Box Shadow)</h2>
+        <div class="elevation-container">
+          <div class="elevation-block" style="box-shadow: var(--elevation-none)">
+            <div class="token-name" style="margin:0 auto var(--spacing-xs) auto">--elevation-none</div>
+            None
+          </div>
+          <div class="elevation-block" style="box-shadow: var(--elevation-sm)">
+            <div class="token-name" style="margin:0 auto var(--spacing-xs) auto">--elevation-sm</div>
+            Shadow SM
+          </div>
+          <div class="elevation-block" style="box-shadow: var(--elevation-md)">
+            <div class="token-name" style="margin:0 auto var(--spacing-xs) auto">--elevation-md</div>
+            Shadow MD
+          </div>
+          <div class="elevation-block" style="box-shadow: var(--elevation-lg)">
+            <div class="token-name" style="margin:0 auto var(--spacing-xs) auto">--elevation-lg</div>
+            Shadow LG
+          </div>
+          <div class="elevation-block" style="box-shadow: var(--elevation-xl)">
+            <div class="token-name" style="margin:0 auto var(--spacing-xs) auto">--elevation-xl</div>
+            Shadow XL
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section">
-      <h2>05. Semantic Token — Text</h2>
-      <p class="desc">Text token giúp không phải chọn màu chữ thủ công từng màn hình.</p>
-
-      <div class="grid">
-        <div class="token">
-          <div class="swatch text-primary"></div>
-          <div class="token-name">text-primary</div>
-          <div class="token-value">
-            Dùng: title, text chính<br>
-            Dark: #FFFFFF<br>
-            Light: #0F172A
+      <section class="main-section">
+        <h2 class="section-title">💧 Opacity Foundation</h2>
+        <div class="opacity-container">
+          <div class="opacity-block" style="opacity: var(--opacity-opaque)">
+            Opaque / Nền đặc (1) <span style="font-size:11px; font-weight:normal; font-family:monospace;">--opacity-opaque</span>
+          </div>
+          <div class="opacity-block" style="opacity: var(--opacity-high)">
+            High Content / Chữ chính (0.87) <span style="font-size:11px; font-weight:normal; font-family:monospace;">--opacity-high</span>
+          </div>
+          <div class="opacity-block" style="opacity: var(--opacity-medium)">
+            Medium / Chữ phụ (0.6) <span style="font-size:11px; font-weight:normal; font-family:monospace;">--opacity-medium</span>
+          </div>
+          <div class="opacity-block" style="opacity: var(--opacity-disabled)">
+            Disabled / Vô hiệu hóa (0.38) <span style="font-size:11px; font-weight:normal; font-family:monospace;">--opacity-disabled</span>
+          </div>
+          <div class="opacity-block" style="opacity: var(--opacity-hover)">
+            Hover State / Phủ nền (0.08) <span style="font-size:11px; font-weight:normal; font-family:monospace;">--opacity-hover</span>
+          </div>
+          <div class="opacity-block" style="opacity: var(--opacity-transparent)">
+            Transparent (0) <span style="font-size:11px; font-weight:normal; font-family:monospace;">--opacity-transparent</span>
           </div>
         </div>
+      </section>
 
-        <div class="token">
-          <div class="swatch text-secondary"></div>
-          <div class="token-name">text-secondary</div>
-          <div class="token-value">
-            Dùng: mô tả, text phụ<br>
-            Dark: #CBD5E1<br>
-            Light: #334155
-          </div>
-        </div>
-
-        <div class="token">
-          <div class="swatch text-muted"></div>
-          <div class="token-name">text-muted</div>
-          <div class="token-value">
-            Dùng: caption, metadata<br>
-            Dark: #94A3B8<br>
-            Light: #64748B
-          </div>
-        </div>
-
-        <div class="token">
-          <div class="swatch text-disabled"></div>
-          <div class="token-name">text-disabled</div>
-          <div class="token-value">
-            Dùng: chữ disabled<br>
-            Dark: #64748B<br>
-            Light: #94A3B8
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>06. Semantic Token — Border</h2>
-      <p class="desc">Border token dùng cho card, input, dropdown, divider, focus state.</p>
-
-      <div class="grid">
-        <div class="token">
-          <div class="swatch border-default"></div>
-          <div class="token-name">border-default</div>
-          <div class="token-value">
-            Dùng: border mặc định<br>
-            Dark: #1E2D44<br>
-            Light: #E2E8F0
-          </div>
-        </div>
-
-        <div class="token">
-          <div class="swatch border-hover"></div>
-          <div class="token-name">border-hover</div>
-          <div class="token-value">
-            Dùng: hover border<br>
-            Dark: #334155<br>
-            Light: #CBD5E1
-          </div>
-        </div>
-
-        <div class="token">
-          <div class="swatch border-focus"></div>
-          <div class="token-name">border-focus</div>
-          <div class="token-value">
-            Dùng: focus input/button<br>
-            Dark: #06B6D4<br>
-            Light: #06B6D4
-          </div>
-        </div>
-
-        <div class="token">
-          <div class="swatch border-disabled"></div>
-          <div class="token-name">border-disabled</div>
-          <div class="token-value">
-            Dùng: disabled border<br>
-            Dark: #122033<br>
-            Light: #E2E8F0
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="section">
-      <h2>07. Typography Tokens</h2>
-      <p class="desc">Font dùng chính là Raleway. Size chữ chỉ dùng 32, 24, 16, 12, 10 để designer và dev không bị lệch.</p>
-
-      <div class="grid">
-        <div class="token"><div class="token-name">font-display-xl</div><div class="token-value">Raleway / 32px / 800 / 1.2<br>Dùng: số tiền lớn, hero number</div></div>
-        <div class="token"><div class="token-name">font-display-lg</div><div class="token-value">Raleway / 24px / 700 / 1.2<br>Dùng: title nổi bật trong card</div></div>
-        <div class="token"><div class="token-name">font-heading-1</div><div class="token-value">Raleway / 32px / 700 / 1.2<br>Dùng: tiêu đề màn hình</div></div>
-        <div class="token"><div class="token-name">font-heading-2</div><div class="token-value">Raleway / 24px / 700 / 1.2<br>Dùng: tiêu đề section</div></div>
-        <div class="token"><div class="token-name">font-body-lg</div><div class="token-value">Raleway / 16px / 500 / 1.6<br>Dùng: mô tả quan trọng</div></div>
-        <div class="token"><div class="token-name">font-body-md</div><div class="token-value">Raleway / 16px / 400 / 1.5<br>Dùng: nội dung bình thường</div></div>
-        <div class="token"><div class="token-name">font-body-sm</div><div class="token-value">Raleway / 12px / 500 / 1.5<br>Dùng: label, helper text</div></div>
-        <div class="token"><div class="token-name">font-caption</div><div class="token-value">Raleway / 10px / 600 / 1.5<br>Dùng: caption, metadata nhỏ</div></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>08. Spacing Rule</h2>
-      <p class="desc">Spacing vẫn giữ hệ 4/8/12/16/24/32/48, nhưng bổ sung rule để biết dùng ở đâu.</p>
-
-      <div class="grid">
-        <div class="token"><div class="token-name">layout-page-padding</div><div class="token-value">32px desktop / 16px mobile<br>Dùng: padding ngoài cùng của page</div></div>
-        <div class="token"><div class="token-name">layout-section-gap</div><div class="token-value">24px<br>Dùng: khoảng cách giữa các section</div></div>
-        <div class="token"><div class="token-name">component-padding-md</div><div class="token-value">16px<br>Dùng: padding component nhỏ/vừa</div></div>
-        <div class="token"><div class="token-name">card-padding-md</div><div class="token-value">24px<br>Dùng: padding trong card chính</div></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>09. Elevation Tokens</h2>
-      <p class="desc">Shadow system dùng cho Card, Modal, Bottom Sheet để UI có chiều sâu nhưng vẫn nhất quán.</p>
-
-      <div class="grid">
-        <div class="token"><div class="token-name">shadow-1</div><div class="token-value">Card nhẹ<br>0 4px 12px rgba(0,0,0,0.18)</div></div>
-        <div class="token"><div class="token-name">shadow-2</div><div class="token-value">Dropdown / popover<br>0 12px 28px rgba(0,0,0,0.24)</div></div>
-        <div class="token"><div class="token-name">shadow-3</div><div class="token-value">Modal<br>0 24px 60px rgba(0,0,0,0.34)</div></div>
-        <div class="token"><div class="token-name">shadow-bottom-sheet</div><div class="token-value">Bottom Sheet mobile<br>0 -12px 40px rgba(0,0,0,0.32)</div></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>10. Opacity Tokens</h2>
-      <p class="desc">Không hard-code rgba lung tung. Badge, overlay, focus ring, disabled đều dùng opacity token.</p>
-
-      <div class="grid">
-        <div class="token"><div class="token-name">opacity-4</div><div class="token-value">0.04 — nền rất nhẹ</div></div>
-        <div class="token"><div class="token-name">opacity-8</div><div class="token-value">0.08 — hover nhẹ</div></div>
-        <div class="token"><div class="token-name">opacity-12</div><div class="token-value">0.12 — chip / soft bg</div></div>
-        <div class="token"><div class="token-name">opacity-16</div><div class="token-value">0.16 — badge bg</div></div>
-        <div class="token"><div class="token-name">opacity-24</div><div class="token-value">0.24 — focus ring</div></div>
-        <div class="token"><div class="token-name">opacity-48</div><div class="token-value">0.48 — overlay / disabled</div></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>11. Component Tokens</h2>
-      <p class="desc">Button, Input, Card dùng component token riêng. Sau này đổi style từng component không làm hỏng toàn bộ màu brand.</p>
-
-      <div class="grid">
-        <div class="token"><div class="token-name">button-primary-bg</div><div class="token-value">var(--brand-green)</div></div>
-        <div class="token"><div class="token-name">button-primary-text</div><div class="token-value">var(--text-inverse)</div></div>
-        <div class="token"><div class="token-name">button-primary-border</div><div class="token-value">var(--brand-green)</div></div>
-        <div class="token"><div class="token-name">button-secondary-bg</div><div class="token-value">transparent</div></div>
-        <div class="token"><div class="token-name">button-secondary-text</div><div class="token-value">var(--brand-cyan)</div></div>
-        <div class="token"><div class="token-name">button-secondary-border</div><div class="token-value">var(--brand-cyan)</div></div>
-        <div class="token"><div class="token-name">button-gradient-bg</div><div class="token-value">var(--brand-gradient)</div></div>
-        <div class="token"><div class="token-name">input-bg</div><div class="token-value">var(--bg-card)</div></div>
-        <div class="token"><div class="token-name">input-border</div><div class="token-value">var(--border-default)</div></div>
-        <div class="token"><div class="token-name">card-bg</div><div class="token-value">var(--bg-secondary)</div></div>
-        <div class="token"><div class="token-name">card-border</div><div class="token-value">var(--border-default)</div></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>12. State Tokens</h2>
-      <p class="desc">State token giúp hover, focus, active, pressed, disabled thống nhất giữa design và code.</p>
-
-      <div class="grid">
-        <div class="token"><div class="token-name">button-primary-hover</div><div class="token-value">#16A34A</div></div>
-        <div class="token"><div class="token-name">button-primary-active</div><div class="token-value">#15803D</div></div>
-        <div class="token"><div class="token-name">button-primary-focus</div><div class="token-value">var(--brand-cyan)</div></div>
-        <div class="token"><div class="token-name">button-primary-disabled-bg</div><div class="token-value">var(--bg-elevated)</div></div>
-        <div class="token"><div class="token-name">button-secondary-hover-bg</div><div class="token-value">rgba(6,182,212,0.08)</div></div>
-        <div class="token"><div class="token-name">button-secondary-active-bg</div><div class="token-value">rgba(6,182,212,0.16)</div></div>
-        <div class="token"><div class="token-name">button-secondary-focus</div><div class="token-value">var(--brand-cyan)</div></div>
-        <div class="token"><div class="token-name">button-secondary-disabled-border</div><div class="token-value">var(--border-disabled)</div></div>
-        <div class="token"><div class="token-name">input-border-hover</div><div class="token-value">var(--border-hover)</div></div>
-        <div class="token"><div class="token-name">input-border-focus</div><div class="token-value">var(--border-focus)</div></div>
-        <div class="token"><div class="token-name">input-disabled-bg</div><div class="token-value">var(--bg-elevated)</div></div>
-        <div class="token"><div class="token-name">color-text-disabled</div><div class="token-value">var(--text-disabled)</div></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>13. Chart Tokens</h2>
-      <p class="desc">SAVE GAME là app tài chính, nên biểu đồ cần token riêng cho thu nhập, chi tiêu, tiết kiệm, đầu tư, dự báo.</p>
-
-      <div class="chart-row">
-        <div class="token"><div class="swatch chart-income"></div><div class="token-name">chart-income</div><div class="token-value">#22C55E<br>Thu nhập</div></div>
-        <div class="token"><div class="swatch chart-expense"></div><div class="token-name">chart-expense</div><div class="token-value">#EF4444<br>Chi tiêu</div></div>
-        <div class="token"><div class="swatch chart-saving"></div><div class="token-name">chart-saving</div><div class="token-value">#06B6D4<br>Tiết kiệm</div></div>
-        <div class="token"><div class="swatch chart-investment"></div><div class="token-name">chart-investment</div><div class="token-value">#8B5CF6<br>Đầu tư</div></div>
-        <div class="token"><div class="swatch chart-forecast"></div><div class="token-name">chart-forecast</div><div class="token-value">#F59E0B<br>Dự báo</div></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>14. Component Spec</h2>
-      <p class="desc">Thông số dev cần để code đúng UI: chiều cao, padding, gap, radius, state.</p>
-
-      <table class="spec-table">
-        <thead>
-          <tr>
-            <th>Component</th>
-            <th>Size</th>
-            <th>Height</th>
-            <th>Padding / Gap</th>
-            <th>Token chính</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Button</td><td>SM</td><td>32px</td><td>X: 12px / Icon gap: 8px</td><td>button-height-sm</td></tr>
-          <tr><td>Button</td><td>MD</td><td>40px</td><td>X: 16px / Icon gap: 8px</td><td>button-height-md</td></tr>
-          <tr><td>Button</td><td>LG</td><td>48px</td><td>X: 24px / Icon gap: 8px</td><td>button-height-lg</td></tr>
-          <tr><td>Button</td><td>XL</td><td>52px</td><td>X: 24px / Icon gap: 8px</td><td>button-height-xl</td></tr>
-          <tr><td>Input</td><td>MD</td><td>48px</td><td>X: 16px</td><td>input-height-md</td></tr>
-          <tr><td>Card</td><td>MD</td><td>Auto</td><td>Padding: 24px / Gap: 16px</td><td>card-padding-md</td></tr>
-          <tr><td>Modal</td><td>MD</td><td>Auto</td><td>Padding: 24px</td><td>modal-padding-md</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="section">
-      <h2>15. Button Usage Rule</h2>
-      <p class="desc">Quy định để không bị loạn giữa nút Gradient và nút Primary Green.</p>
-
-      <div class="grid">
-        <div class="token">
-          <div class="token-name">Hero Button</div>
-          <div class="token-value">
-            Màu: Gradient<br>
-            Dùng: CTA quan trọng nhất, onboarding, setup tháng
-          </div>
-        </div>
-
-        <div class="token">
-          <div class="token-name">Primary Button</div>
-          <div class="token-value">
-            Màu: #22C55E<br>
-            Dùng: lưu, thêm, xác nhận, cập nhật
-          </div>
-        </div>
-
-        <div class="token">
-          <div class="token-name">Secondary Button</div>
-          <div class="token-value">
-            Màu: outline cyan<br>
-            Dùng: xem chi tiết, quay lại, hành động phụ
-          </div>
-        </div>
-
-        <div class="token">
-          <div class="token-name">Danger Button</div>
-          <div class="token-value">
-            Màu: #EF4444<br>
-            Dùng: xóa, reset, hành động nguy hiểm
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>16. Component Preview</h2>
-      <p class="desc">Demo dùng đúng token ở trên để tạo UI thật.</p>
-
-      <div class="grid-2">
-        <div class="demo-card">
-          <h3>Tháng này</h3>
-          <p class="desc">Card này dùng bg-secondary + border-default.</p>
-
-          <div class="balance">8.450.000đ</div>
-
-          <div class="badge-row">
-            <span class="badge badge-success">An toàn</span>
-            <span class="badge badge-warning">Cảnh báo</span>
-            <span class="badge badge-danger">Nguy hiểm</span>
-            <span class="badge badge-info">Thông tin</span>
-          </div>
-
-          <div class="btn-row">
-            <button class="btn btn-gradient btn-xl">Thiết lập tháng</button>
-            <button class="btn btn-primary btn-lg">Lưu chi tiêu</button>
-            <button class="btn btn-secondary btn-md">Xem lịch sử</button>
-            <button class="btn btn-disabled">Disabled</button>
-          </div>
-        </div>
-
-        <div class="demo-card">
-          <h3>Form nhập chi tiêu</h3>
-          <p class="desc">Input dùng bg-card, border-default, border-focus.</p>
-
-          <label>
-            Tên chi tiêu
-            <input type="text" placeholder="Ví dụ: Cà phê" />
-          </label>
-
-          <label>
-            Danh mục
-            <select>
-              <option>Ăn uống</option>
-              <option>Di chuyển</option>
-              <option>Giải trí</option>
-            </select>
-          </label>
-
-          <label class="checkbox">
-            <input type="checkbox" checked />
-            Tính vào chi tiêu hôm nay
-          </label>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>17. Cách dùng trong dự án thật</h2>
-
-      <div class="usage">
-        <p>Background app: <code>var(--bg-primary)</code></p>
-        <p>Card: <code>var(--bg-card)</code></p>
-        <p>List item: <code>var(--bg-secondary)</code></p>
-        <p>Popup / dropdown: <code>var(--bg-elevated)</code></p>
-        <p>Title: <code>var(--text-primary)</code></p>
-        <p>Mô tả: <code>var(--text-secondary)</code></p>
-        <p>Caption: <code>var(--text-muted)</code></p>
-        <p>Border card/input: <code>var(--border-default)</code></p>
-        <p>Focus input: <code>var(--border-focus)</code></p>
-        <p>Hero Button: <code>var(--brand-gradient)</code></p>
-        <p>Primary Button: <code>var(--button-primary-bg)</code></p>
-        <p>Secondary Button: <code>var(--button-secondary-border)</code> + <code>var(--button-secondary-text)</code></p>
-        <p>Button height: <code>var(--button-height-sm/md/lg/xl)</code></p>
-        <p>Typography: <code>var(--font-heading-1-size)</code>, <code>var(--font-body-md-size)</code></p>
-        <p>Chart income: <code>var(--chart-income)</code></p>
-      </div>
-    </section>
-
+    </main>
   </div>
 
+  <div id="toast" class="toast">Đã copy!</div>
+
   <script>
-    const body = document.body;
-    const themeBtn = document.getElementById("themeBtn");
+    // 1. Tự động Render bảng màu cấu trúc mới
+    const colorGroups = [
+      { name: "🌿 GREEN (Core Brand)", prefix: "--color-green" },
+      { name: "🌊 CYAN (Highlight / Info)", prefix: "--color-cyan" },
+      { name: "⚫ GRAY (Neutral Nền chính)", prefix: "--color-gray" },
+      { name: "🟡 ORANGE (Warning / Attention)", prefix: "--color-orange" },
+      { name: "🔴 RED (Danger / Error)", prefix: "--color-red" }
+    ];
 
-    themeBtn.addEventListener("click", () => {
-      body.classList.toggle("dark");
-      body.classList.toggle("light");
+    function getCssVariableValue(variableName) {
+      return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+    }
 
-      const isLight = body.classList.contains("light");
+    const wrapper = document.getElementById('palette-wrapper');
+    
+    colorGroups.forEach(group => {
+      const titleElement = document.createElement('h4');
+      titleElement.style.margin = "20px 0 10px 0";
+      titleElement.style.color = "var(--text-heading)";
+      titleElement.innerText = group.name;
+      wrapper.appendChild(titleElement);
 
-      themeBtn.textContent = isLight
-        ? "Đổi sang Dark Mode"
-        : "Đổi sang Light Mode";
+      const grid = document.createElement('div');
+      grid.className = 'color-grid';
+
+      const scales = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+      scales.forEach(scale => {
+        const tokenName = `${group.prefix}-${scale}`;
+        const hexValue = getCssVariableValue(tokenName);
+
+        if (hexValue) {
+          const item = document.createElement('div');
+          item.style.cursor = 'pointer';
+          item.addEventListener('click', () => copyToClipboard(hexValue));
+          
+          item.innerHTML = `
+            <div class="color-swatch-box" style="background-color: var(${tokenName});"></div>
+            <div class="color-meta">
+              <strong>${scale}</strong><br>
+              <span style="opacity: 0.7">${hexValue}</span>
+            </div>
+          `;
+          grid.appendChild(item);
+        }
+      });
+      wrapper.appendChild(grid);
     });
+
+    // 2. Logic Xử lý Chuyển đổi Light / Dark Mode
+    const toggleBtn = document.getElementById('theme-toggle');
+    
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+        toggleBtn.innerText = "Chế độ tối 🌙";
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        toggleBtn.innerText = "Chế độ sáng ☀️";
+      }
+    });
+
+    // 3. Hàm copy và hiển thị Toast thông báo nhanh
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.innerText = `Đã copy mã màu: ${text.toUpperCase()}`;
+        toast.classList.add('show');
+        setTimeout(() => { toast.classList.remove('show'); }, 2000);
+      });
+    }
   </script>
 </body>
 </html>
