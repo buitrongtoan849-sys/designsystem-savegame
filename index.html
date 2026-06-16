@@ -86,6 +86,11 @@
       --font-weight-semibold: 600;
       --font-weight-bold: 700;
 
+      /* 📐 LINE HEIGHT (Chiều cao dòng mới thêm) */
+      --line-height-tight: 1.2;  /* Dùng cho Heading lớn cần gom chữ gọn gàng */
+      --line-height-base: 1.5;   /* Dùng cho Heading vừa hoặc Text ngắn */
+      --line-height-loose: 1.75; /* Dùng cho các đoạn văn dài (Body) dễ đọc hơn */
+
       /* 📐 SPACING */
       --spacing-xs: 0.25rem; /* 4px */
       --spacing-sm: 0.5rem;  /* 8px */
@@ -142,7 +147,7 @@
       color: var(--text-main);
       margin: 0;
       padding: 40px 20px;
-      line-height: 1.5;
+      line-height: var(--line-height-base);
       transition: background-color 0.3s, color 0.3s;
     }
 
@@ -163,6 +168,7 @@
     h1 {
       font-size: var(--font-size-h1);
       font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-tight);
       margin: 0 0 10px 0;
       color: var(--text-heading);
     }
@@ -197,6 +203,7 @@
     .section-title {
       font-size: var(--font-size-h2);
       font-weight: var(--font-weight-semibold);
+      line-height: var(--line-height-base);
       margin-top: 0;
       margin-bottom: var(--spacing-lg);
       padding-bottom: var(--spacing-sm);
@@ -302,7 +309,7 @@
     <header>
       <div>
         <h1>Save Game - Design System Foundations</h1>
-        <p style="color: var(--text-muted); margin: 0;">Đầy đủ Color, Typography, Spacing, Radius, Elevation và Opacity (Light/Dark Mode).</p>
+        <p style="color: var(--text-muted); margin: 0;">Đầy đủ Color, Typography (có Line-height), Spacing, Radius, Elevation và Opacity (Light/Dark Mode).</p>
       </div>
       <button class="theme-toggle-btn" id="theme-toggle">Chế độ tối 🌙</button>
     </header>
@@ -319,33 +326,39 @@
         <div class="typo-row">
           <div class="typo-item">
             <span class="typo-label">Heading 1 (32px)</span>
-            <span class="token-name" style="margin-right:20px">--font-size-h1</span>
-            <h1 style="font-size: var(--font-size-h1); margin:0; color: var(--text-heading);">H1. Tiêu đề chính hệ thống</h1>
+            <span class="token-name" style="margin-right:10px">--font-size-h1</span>
+            <span class="token-name" style="margin-right:20px; background: var(--color-cyan-100); color: var(--color-cyan-900);">--line-height-tight (1.2)</span>
+            <h1 style="font-size: var(--font-size-h1); line-height: var(--line-height-tight); margin:0; color: var(--text-heading);">H1. Tiêu đề chính hệ thống văn bản nhiều dòng để kiểm tra độ cao của dòng.</h1>
           </div>
           <div class="typo-item">
             <span class="typo-label">Heading 2 (24px)</span>
-            <span class="token-name" style="margin-right:20px">--font-size-h2</span>
-            <h2 style="font-size: var(--font-size-h2); margin:0; color: var(--text-heading);">H2. Tiêu đề vùng nội dung</h2>
+            <span class="token-name" style="margin-right:10px">--font-size-h2</span>
+            <span class="token-name" style="margin-right:20px; background: var(--color-cyan-100); color: var(--color-cyan-900);">--line-height-base (1.5)</span>
+            <h2 style="font-size: var(--font-size-h2); line-height: var(--line-height-base); margin:0; color: var(--text-heading);">H2. Tiêu đề vùng nội dung nhiều dòng để kiểm tra độ cao của dòng một cách trực quan nhất.</h2>
           </div>
           <div class="typo-item">
             <span class="typo-label">Heading 3 (20px)</span>
-            <span class="token-name" style="margin-right:20px">--font-size-h3</span>
-            <h3 style="font-size: var(--font-size-h3); margin:0; color: var(--text-heading);">H3. Tiêu đề khối / Box nhỏ</h3>
+            <span class="token-name" style="margin-right:10px">--font-size-h3</span>
+            <span class="token-name" style="margin-right:20px; background: var(--color-cyan-100); color: var(--color-cyan-900);">--line-height-base (1.5)</span>
+            <h3 style="font-size: var(--font-size-h3); line-height: var(--line-height-base); margin:0; color: var(--text-heading);">H3. Tiêu đề khối / Box nhỏ nhiều dòng để xem khoảng cách dòng.</h3>
           </div>
           <div class="typo-item">
             <span class="typo-label">Body (16px)</span>
-            <span class="token-name" style="margin-right:20px">--font-size-body</span>
-            <p style="font-size: var(--font-size-body); margin:0;">Chữ văn bản nội dung thông thường (Body text) sử dụng font chữ Raleway.</p>
+            <span class="token-name" style="margin-right:10px">--font-size-body</span>
+            <span class="token-name" style="margin-right:20px; background: var(--color-cyan-100); color: var(--color-cyan-900);">--line-height-loose (1.75)</span>
+            <p style="font-size: var(--font-size-body); line-height: var(--line-height-loose); margin:0;">Chữ văn bản nội dung thông thường (Body text) sử dụng font chữ Raleway. Khi áp dụng line-height loose (1.75), các đoạn văn dài có nhiều dòng sẽ trở nên thông thoáng, rõ ràng, giúp mắt người đọc không bị mỏi khi lướt qua các tài liệu dài.</p>
           </div>
           <div class="typo-item">
             <span class="typo-label">Button / Label (14px)</span>
-            <span class="token-name" style="margin-right:20px">--font-size-button</span>
-            <span style="font-size: var(--font-size-button); font-weight: var(--font-weight-semibold); background: var(--color-green-500); color: white; padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-sm)">LABEL TEXT</span>
+            <span class="token-name" style="margin-right:10px">--font-size-button</span>
+            <span class="token-name" style="margin-right:20px; background: var(--color-cyan-100); color: var(--color-cyan-900);">--line-height-tight (1.2)</span>
+            <span style="font-size: var(--font-size-button); line-height: var(--line-height-tight); display: inline-block; font-weight: var(--font-weight-semibold); background: var(--color-green-500); color: white; padding: var(--spacing-sm) var(--spacing-md); border-radius: var(--radius-sm)">LABEL TEXT</span>
           </div>
           <div class="typo-item">
             <span class="typo-label">Caption (12px)</span>
-            <span class="token-name" style="margin-right:20px">--font-size-caption</span>
-            <span style="font-size: var(--font-size-caption); color: var(--text-muted)">* Text ghi chú hoặc mô tả phụ nhỏ</span>
+            <span class="token-name" style="margin-right:10px">--font-size-caption</span>
+            <span class="token-name" style="margin-right:20px; background: var(--color-cyan-100); color: var(--color-cyan-900);">--line-height-base (1.5)</span>
+            <span style="font-size: var(--font-size-caption); line-height: var(--line-height-base); color: var(--text-muted)">* Text ghi chú hoặc mô tả phụ nhỏ nhiều dòng để kiểm tra giãn dòng caption.</span>
           </div>
         </div>
       </section>
