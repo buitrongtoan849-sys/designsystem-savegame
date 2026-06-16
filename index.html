@@ -90,17 +90,17 @@
       --font-weight-semibold: 600;
       --font-weight-bold: 700;
 
-      /* 📐 LINE HEIGHT (Chiều cao dòng mới thêm) */
-      --line-height-tight: 1.2;  /* Dùng cho Heading lớn cần gom chữ gọn gàng */
-      --line-height-base: 1.5;   /* Dùng cho Heading vừa hoặc Text ngắn */
-      --line-height-loose: 1.75; /* Dùng cho các đoạn văn dài (Body) dễ đọc hơn */
+      /* 📐 LINE HEIGHT */
+      --line-height-tight: 1.2;  
+      --line-height-base: 1.5;   
+      --line-height-loose: 1.75; 
 
       /* 📐 SPACING */
-      --spacing-xs: 0.25rem; /* 4px */
-      --spacing-sm: 0.5rem;  /* 8px */
-      --spacing-md: 1rem;    /* 16px */
-      --spacing-lg: 1.5rem;  /* 24px */
-      --spacing-xl: 2rem;    /* 32px */
+      --spacing-xs: 0.25rem; 
+      --spacing-sm: 0.5rem;  
+      --spacing-md: 1rem;    
+      --spacing-lg: 1.5rem;  
+      --spacing-xl: 2rem;    
 
       /* 🔲 RADIUS */
       --radius-sm: 4px;
@@ -285,9 +285,9 @@
     }
 
     /* Palette layout */
-    .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: var(--spacing-xs); margin-bottom: var(--spacing-md); }
+    .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--spacing-xs); margin-bottom: var(--spacing-md); }
     .color-swatch-box { height: 50px; border-radius: var(--radius-sm); border: 1px solid rgba(0,0,0,0.1); }
-    .color-meta { font-size: 10px; margin-top: 4px; font-family: monospace; text-align: center; color: var(--text-main); }
+    .color-meta { font-size: 11px; margin-top: 6px; font-family: monospace; text-align: center; color: var(--text-main); line-height: 1.4; }
 
     /* Toast notification */
     .toast {
@@ -501,7 +501,6 @@
 
       tokensToRender.forEach(tokenName => {
         const hexValue = getCssVariableValue(tokenName);
-        const displayName = group.tokens ? tokenName.replace('--color-', '') : tokenName.split('-').pop();
 
         if (hexValue) {
           const item = document.createElement('div');
@@ -511,8 +510,8 @@
           item.innerHTML = `
             <div class="color-swatch-box" style="background-color: var(${tokenName});"></div>
             <div class="color-meta">
-              <strong style="text-transform: capitalize;">${displayName}</strong><br>
-              <span style="opacity: 0.7">${hexValue}</span>
+              <span style="color: var(--text-muted); font-size: 10px; display: block; margin-bottom: 2px;">${tokenName}</span>
+              <strong style="color: var(--color-cyan-700);">${hexValue.toUpperCase()}</strong>
             </div>
           `;
           grid.appendChild(item);
