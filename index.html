@@ -12,6 +12,10 @@
   <style>
     /* --- HỆ THỐNG TOKEN DESIGN SYSTEM --- */
     :root {
+      /* ⚪⚫ ABSOLUTE PALETTE */
+      --color-white: #ffffff;
+      --color-black: #000000;
+
       /* 🟢 GREEN PALETTE */
       --color-green-50:  #ecfdf5;
       --color-green-100: #d1fae5;
@@ -121,7 +125,7 @@
 
       /* 🌓 MAPPING MÀU THEO LIGHT MODE (Mặc định) */
       --bg-body: var(--color-gray-50);
-      --bg-card: #ffffff;
+      --bg-card: var(--color-white);
       --bg-demo-box: var(--color-gray-100);
       --border-color: var(--color-gray-200);
       --text-main: var(--color-gray-900);
@@ -175,7 +179,7 @@
 
     .theme-toggle-btn {
       background: var(--color-green-500);
-      color: white;
+      color: var(--color-white);
       border: none;
       padding: var(--spacing-sm) var(--spacing-lg);
       font-family: inherit;
@@ -271,8 +275,8 @@
       border-radius: var(--radius-md);
     }
     .opacity-block {
-      background: #ffffff;
-      color: #000000;
+      background: var(--color-white);
+      color: var(--color-black);
       padding: var(--spacing-sm);
       margin-bottom: var(--spacing-sm);
       font-weight: var(--font-weight-bold);
@@ -291,7 +295,7 @@
       bottom: var(--spacing-lg);
       right: var(--spacing-lg);
       background: var(--color-gray-900);
-      color: #ffffff;
+      color: var(--color-white);
       padding: var(--spacing-sm) var(--spacing-lg);
       border-radius: var(--radius-md);
       font-size: var(--font-size-button);
@@ -337,7 +341,6 @@
             <h2 style="font-size: var(--font-size-h2); line-height: var(--line-height-base); margin:0; color: var(--text-heading);">H2. Tiêu đề vùng nội dung nhiều dòng để kiểm tra độ cao của dòng một cách trực quan nhất.</h2>
           </div>
           <div class="typo-item">
-            <span class="typo-label">Heading 3 (20px)</span>
             <span class="token-name" style="margin-right:10px">--font-size-h3</span>
             <span class="token-name" style="margin-right:20px; background: var(--color-cyan-100); color: var(--color-cyan-900);">--line-height-base (1.5)</span>
             <h3 style="font-size: var(--font-size-h3); line-height: var(--line-height-base); margin:0; color: var(--text-heading);">H3. Tiêu đề khối / Box nhỏ nhiều dòng để xem khoảng cách dòng.</h3>
@@ -352,7 +355,7 @@
             <span class="typo-label">Button / Label (14px)</span>
             <span class="token-name" style="margin-right:10px">--font-size-button</span>
             <span class="token-name" style="margin-right:20px; background: var(--color-cyan-100); color: var(--color-cyan-900);">--line-height-tight (1.2)</span>
-            <span style="font-size: var(--font-size-button); line-height: var(--line-height-tight); display: inline-block; font-weight: var(--font-weight-semibold); background: var(--color-green-500); color: white; padding: var(--spacing-sm) var(--spacing-md); border-radius: var(--radius-sm)">LABEL TEXT</span>
+            <span style="font-size: var(--font-size-button); line-height: var(--line-height-tight); display: inline-block; font-weight: var(--font-weight-semibold); background: var(--color-green-500); color: var(--color-white); padding: var(--spacing-sm) var(--spacing-md); border-radius: var(--radius-sm)">LABEL TEXT</span>
           </div>
           <div class="typo-item">
             <span class="typo-label">Caption (12px)</span>
@@ -469,11 +472,12 @@
   <script>
     // 1. Tự động Render bảng màu cấu trúc mới
     const colorGroups = [
-      { name: "🌿 GREEN (Core Brand)", prefix: "--color-green" },
-      { name: "🌊 CYAN (Highlight / Info)", prefix: "--color-cyan" },
-      { name: "⚫ GRAY (Neutral Nền chính)", prefix: "--color-gray" },
-      { name: "🟡 ORANGE (Warning / Attention)", prefix: "--color-orange" },
-      { name: "🔴 RED (Danger / Error)", prefix: "--color-red" }
+      { name: "⚪⚫ ABSOLUTE (White & Black)", tokens: ["--color-white", "--color-black"] },
+      { name: "🌿 GREEN (Core Brand)", prefix: "--color-green", scales: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900] },
+      { name: "🌊 CYAN (Highlight / Info)", prefix: "--color-cyan", scales: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900] },
+      { name: "⚫ GRAY (Neutral Nền chính)", prefix: "--color-gray", scales: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900] },
+      { name: "🟡 ORANGE (Warning / Attention)", prefix: "--color-orange", scales: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900] },
+      { name: "🔴 RED (Danger / Error)", prefix: "--color-red", scales: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900] }
     ];
 
     function getCssVariableValue(variableName) {
@@ -492,10 +496,12 @@
       const grid = document.createElement('div');
       grid.className = 'color-grid';
 
-      const scales = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
-      scales.forEach(scale => {
-        const tokenName = `${group.prefix}-${scale}`;
+      // Xử lý render cho cả nhóm có scale cố định và nhóm absolute không scale
+      const tokensToRender = group.tokens ? group.tokens : group.scales.map(scale => `${group.prefix}-${scale}`);
+
+      tokensToRender.forEach(tokenName => {
         const hexValue = getCssVariableValue(tokenName);
+        const displayName = group.tokens ? tokenName.replace('--color-', '') : tokenName.split('-').pop();
 
         if (hexValue) {
           const item = document.createElement('div');
@@ -505,7 +511,7 @@
           item.innerHTML = `
             <div class="color-swatch-box" style="background-color: var(${tokenName});"></div>
             <div class="color-meta">
-              <strong>${scale}</strong><br>
+              <strong style="text-transform: capitalize;">${displayName}</strong><br>
               <span style="opacity: 0.7">${hexValue}</span>
             </div>
           `;
